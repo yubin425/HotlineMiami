@@ -1,0 +1,16 @@
+#pragma once
+
+namespace ya::enums
+{
+	enum class eCBType
+	{
+		Transform,
+		End,
+	};
+
+	enum class eLayerType
+	{
+		None,
+		End,
+	};
+}
