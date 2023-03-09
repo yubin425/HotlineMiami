@@ -25,71 +25,47 @@ namespace yu
 		//Vector3 rot = tr->GetRotation();
 		//rot.z += 10.0f * Time::DeltaTime();
 		//tr->SetRotation(rot);
-
-		if (Input::GetKeyState(eKeyCode::R) == eKeyState::PRESSED)
-		{
+		
+		/* mMousPosition = Input::GetMousPosition();
+		 pos = tr->GetPosition();
+		
+			//Vector3 rot = tr->GetRotation();
 			Vector3 rot = tr->GetRotation();
-			rot.z += 10.0f * Time::DeltaTime();
-			tr->SetRotation(rot);
-		}
+			Quaternion rotfi;
+			rot.x = mMousPosition.x;
+			rot.y = mMousPosition.y;
+			rotfi=Quaternion::LookRotation(rot,pos);
+			tr->SetRotation(rotfi);
+		*/
 
 
-		if (Input::GetKey(eKeyCode::RIGHT))
+		if (Input::GetKeyState(eKeyCode::D) == eKeyState::PRESSED)
 		{
-			Vector3 pos = tr->GetPosition();
+			pos = tr->GetPosition();
 			pos.x += 6.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
 		}
-		if (Input::GetKey(eKeyCode::LEFT))
+		if (Input::GetKeyState(eKeyCode::A) == eKeyState::PRESSED)
 		{
-			Vector3 pos = tr->GetPosition();
+			pos = tr->GetPosition();
 			pos.x -= 6.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
 		}
 
-		if (Input::GetKey(eKeyCode::DOWN))
+		if (Input::GetKeyState(eKeyCode::W) == eKeyState::PRESSED)
 		{
-			Vector3 pos = tr->GetPosition();
-			pos.z += 6.0f * Time::DeltaTime();
+			pos = tr->GetPosition();
+			pos.y += 6.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
 		}
-		if (Input::GetKey(eKeyCode::UP))
+		if (Input::GetKeyState(eKeyCode::S) == eKeyState::PRESSED)
 		{
-			Vector3 pos = tr->GetPosition();
-			pos.z -= 6.0f * Time::DeltaTime();
+			pos = tr->GetPosition();
+			pos.y -= 6.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
 		}
 
-		/*Transform* tr = GetOwner()->GetComponent<Transform>();
 
-		Vector3 pos = tr->GetPosition();
-
-		if (Input::GetKeyState(eKeyCode::D) == eKeyState::PRESSED)
-		{
-			pos.x += 3.0f * Time::DeltaTime();
-		}
-		else if (Input::GetKeyState(eKeyCode::A) == eKeyState::PRESSED)
-		{
-			pos.x -= 3.0f * Time::DeltaTime();
-		}
-		else if (Input::GetKeyState(eKeyCode::W) == eKeyState::PRESSED)
-		{
-			pos.y += 3.0f * Time::DeltaTime();
-		}
-		else if (Input::GetKeyState(eKeyCode::S) == eKeyState::PRESSED)
-		{
-			pos.y -= 3.0f * Time::DeltaTime();
-		}
-		else if (Input::GetKeyState(eKeyCode::Q) == eKeyState::PRESSED)
-		{
-			pos.z += 3.0f * Time::DeltaTime();
-		}
-		else if (Input::GetKeyState(eKeyCode::E) == eKeyState::PRESSED)
-		{
-			pos.z -= 3.0f * Time::DeltaTime();
-		}
-
-		tr->SetPosition(pos);*/
 	}
 
 	void PlayerScript::Render()

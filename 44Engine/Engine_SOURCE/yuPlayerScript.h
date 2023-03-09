@@ -1,5 +1,6 @@
 #pragma once
 #include "yuScript.h"
+#include "yuMath.h"
 
 
 namespace yu
@@ -19,6 +20,8 @@ namespace yu
 		virtual void OnCollisionExit(Collider2D* collider) override;
 
 	private:
+		math::Vector2 mMousPosition;
+		math::Vector3 pos;
 
 	};
 }
