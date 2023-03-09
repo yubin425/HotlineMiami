@@ -14,6 +14,8 @@
 
 #define CBSLOT_TRANSFORM 0
 #define CBSLOT_MATERIAL 1
+#define CBSLOT_GRID 2
+#define CBSLOT_ANIMATION 3
 
 
 namespace yu::graphics
@@ -44,6 +46,41 @@ namespace yu::graphics
 		End,
 	};
 
+	enum class eRSType
+	{
+		SolidBack,
+		SolidFront,
+		SolidNone,
+		WireframeNone,
+		End,
+	};
+
+	enum class eDSType
+	{
+		Less,
+		Greater,
+		NoWrite,
+		None,
+		End,
+	};
+
+	enum class eBSType
+	{
+		Default,
+		AlphaBlend,
+		OneOne,
+		End,
+	};
+
+	enum class eRenderingMode
+	{
+		Opaque,
+		CutOut,
+		Transparent,
+		End,
+	};
+
+
 	struct GpuBuffer
 	{
 		enum class eType
@@ -64,6 +101,8 @@ namespace yu::graphics
 	{
 		Transform,
 		Material,
+		Grid,
+		Animation,
 		End,
 	};
 
@@ -76,4 +115,18 @@ namespace yu::graphics
 		Vector4,
 		Matrix,
 	};
+
+	struct DebugMesh
+	{
+		enums::eColliderType type;
+		math::Vector3 position;
+		math::Vector3 rotatation;
+		math::Vector3 scale;
+		
+		float radius;
+		float duration;
+		float time;
+	};
+
+
 }

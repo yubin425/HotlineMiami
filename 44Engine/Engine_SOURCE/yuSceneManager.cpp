@@ -4,51 +4,78 @@
 #include "yuRenderer.h"
 #include "yuResources.h"
 #include "yuTexture.h"
+#include "yuPlayerScript.h"
+#include "yuCamera.h"
+#include "yuCameraScript.h"
+#include "yuSpriteRenderer.h"
+#include "yuGridScript.h"
+#include "yuTitleScene.h"
+#include "yuPlayScene.h"
 
 namespace yu
 {
-	Scene* SceneManager::mPlayScene = nullptr;
+	std::vector<Scene*> SceneManager::mScenes = {};
+	Scene* SceneManager::mActiveScene = nullptr;
 
 	void SceneManager::Initalize()
 	{
-		mPlayScene = new Scene();
-		mPlayScene->Initalize();
+		mScenes.resize((UINT)eSceneType::End);
 
-		GameObject* obj = new GameObject();
-		Transform* tr = new Transform();
-		tr->SetPosition(Vector3 (0.0f, 0.0f, 0.0f));
-		obj->AddComponent(tr);
+		mScenes[(UINT)eSceneType::Tilte] = new TitleScene();
+		mScenes[(UINT)eSceneType::Play] = new PlayScene();
 
-		MeshRenderer* mr = new MeshRenderer();
-		obj->AddComponent(mr);
-		
-		Mesh* mesh = Resources::Find<Mesh>(L"RectMesh");
-		Material* mateiral = Resources::Find<Material>(L"RectMaterial");
+		mActiveScene = mScenes[(UINT)eSceneType::Tilte];
 
-		Vector2 vec2(1.0f, 1.0f);
-		mateiral->SetData(eGPUParam::Vector2, &vec2);
-
-		mr->SetMaterial(mateiral);
-		mr->SetMesh(mesh);
-
-		Texture* texture = Resources::Load<Texture>(L"SmileTexture", L"Smile.png");
-		texture->BindShader(eShaderStage::PS, 0);
-
-		mPlayScene->AddGameObject(obj, eLayerType::Player);
+		for (Scene* scene : mScenes)
+		{
+			scene->Initalize();
+		}
 	}
 
 	void SceneManager::Update()
 	{
-		mPlayScene->Update();
+		mActiveScene->Update();
 	}
 
 	void SceneManager::FixedUpdate()
 	{
-		mPlayScene->FixedUpdate();
+		mActiveScene->FixedUpdate();
 	}
 
 	void SceneManager::Render()
 	{
-		mPlayScene->Render();
+		mActiveScene->Render();
+	}
+	
+	void SceneManager::Destroy()
+	{
+		mActiveScene->Destroy();
+	}
+
+	void SceneManager::Release()
+	{
+		for (Scene* scene : mScenes)
+		{
+			delete scene;
+			scene = nullptr;
+		}
+	}
+	void SceneManager::LoadScene(eSceneType type)
+	{
+		if (mActiveScene)
+			mActiveScene->OnExit();
+
+		// 바뀔때 dontDestory 오브젝트는 다음씬으로 같이 넘겨줘야한다.
+		std::vector<GameObject*> gameObjs 
+			= mActiveScene->GetDontDestroyGameObjects();
+		mActiveScene = mScenes[(UINT)type];
+		
+		for (GameObject* obj : gameObjs)
+		{
+			eLayerType type = obj->GetLayerType();
+			mActiveScene->AddGameObject(obj, type);
+		}
+
+		mActiveScene->OnEnter();
 	}
 }

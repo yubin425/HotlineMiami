@@ -2,11 +2,12 @@
 #include "yuComponent.h"
 #include "yuMesh.h"
 #include "yuMaterial.h"
+#include "yuBaseRenderer.h"
 
 using namespace yu::graphics;
 namespace yu
 {
-	class MeshRenderer : public Component
+	class MeshRenderer : public BaseRenderer
 	{
 	public:
 		MeshRenderer();
@@ -16,12 +17,5 @@ namespace yu
 		virtual void Update() override;
 		virtual void FixedUpdate() override;
 		virtual void Render() override;
-
-		void SetMesh(Mesh* mesh) { mMesh = mesh; }
-		void SetMaterial(Material* shader) { mMaterial = shader; }
-
-	private:
-		Mesh* mMesh;
-		Material* mMaterial;
 	};
 }

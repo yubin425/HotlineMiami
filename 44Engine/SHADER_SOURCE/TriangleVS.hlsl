@@ -1,45 +1,29 @@
-//#include ""
-
-struct VTX_IN
+#include "globals.hlsli"
+struct VSIn
 {
-    float4 vPos : POSITION;
-    float4 vColor : COLOR;
-    float2 vUV : TEXCOORD;
+    float4 Pos : POSITION;
+    float4 Color : COLOR;
+    float2 UV : TEXCOORD;
 };
 
-struct VTX_OUT
+struct VSOut
 {
-    float4 vPos : SV_Position;
-    float4 vColor : COLOR;
-    float2 vUV : TEXCOORD;
+    float4 Pos : SV_Position;
+    float4 Color : COLOR;
+    float2 UV : TEXCOORD;
 };
 
-cbuffer Transform : register(b0)
+VSOut main(VSIn In)
 {
-    float4 cbPos;
-}
-
-cbuffer MaterialData : register(b1)
-{
-    int cbiData;
-    float cbfData;
-    float2 cbxy;
-    float3 cbxyz;
-    float4 cbxyzw;
-    matrix cbmat;
-}
-
-SamplerState pointSampler : register(s0);
-SamplerState linearSampler : register(s1);
-SamplerState anisotropicSampler : register(s2);
-
-VTX_OUT VS_Test(VTX_IN _in)
-{
-    VTX_OUT output = (VTX_OUT) 0.f;
+    VSOut Out = (VSOut) 0.f;
     
-    output.vPos = float4(_in.vPos + cbPos);
-    output.vColor = _in.vColor;
-    output.vUV = _in.vUV;
+    float4 worldPosition = mul(In.Pos, world);
+    float4 viewPosition = mul(worldPosition, view);
+    float4 ProjPosition = mul(viewPosition, projection);
     
-    return output;
+    Out.Pos = ProjPosition;
+    Out.Color = In.Color;
+    Out.UV = In.UV;
+    
+    return Out;
 }

@@ -6,6 +6,7 @@
 #include "yuMesh.h"
 #include "yuShader.h"
 #include "yuConstantBuffer.h"
+#include "yuCamera.h"
 
 using namespace yu::math;
 using namespace yu::graphics;
@@ -21,7 +22,9 @@ namespace yu::renderer
 
 	CBUFFER(TransformCB, CBSLOT_TRANSFORM)
 	{
-		Vector4 pos;
+		Matrix world;
+		Matrix view;
+		Matrix projection;
 	};
 
 	CBUFFER(MaterialCB, CBSLOT_MATERIAL)
@@ -34,12 +37,40 @@ namespace yu::renderer
 		Matrix matrix;
 	};
 
+	CBUFFER(GridCB, CBSLOT_GRID)
+	{
+		Vector4 cameraPosition;
+		Vector2 cameraScale;
+		Vector2 resolution;
+	};
+
+	CBUFFER(AnimationCB, CBSLOT_ANIMATION)
+	{
+		Vector2 leftTop;
+		Vector2 size;
+		Vector2 offset;
+		Vector2 atlasSize;
+
+		UINT used;
+	};
 
 	extern Vertex vertexes[4];
+	extern Camera* mainCamera;
 	extern ConstantBuffer* constantBuffers[];
 	extern Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerStates[];
+	extern Microsoft::WRL::ComPtr<ID3D11RasterizerState> rasterizerStates[];
+	extern Microsoft::WRL::ComPtr<ID3D11DepthStencilState> depthstencilStates[];
+	extern Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[];
+	
+	extern std::vector<Camera*> cameras[];
+	extern std::vector<DebugMesh> debugMeshes;
 
 	void Initialize();
+	void Render();
 	void Release();
+
+	//Renderer
+
+
 }
 

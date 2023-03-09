@@ -44,6 +44,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableUnitySupport>false</EnableUnitySupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -153,8 +154,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="yuAnimation.h" />
+    <ClInclude Include="yuAnimator.h" />
+    <ClInclude Include="yuCollider3D.h" />
+    <ClInclude Include="yuCollider2D.h" />
+    <ClInclude Include="yuCollisionManager.h" />
     <ClInclude Include="CommonInclude.h" />
     <ClInclude Include="yuApplication.h" />
+    <ClInclude Include="yuBaseRenderer.h" />
+    <ClInclude Include="yuCamera.h" />
+    <ClInclude Include="yuCameraScript.h" />
+    <ClInclude Include="yuCollider.h" />
     <ClInclude Include="yuComponent.h" />
     <ClInclude Include="yuConstantBuffer.h" />
     <ClInclude Include="yuEngine.h" />
@@ -163,43 +173,71 @@
     <ClInclude Include="yuGameObject.h" />
     <ClInclude Include="yuGraphicDevice_DX11.h" />
     <ClInclude Include="yuGraphics.h" />
+    <ClInclude Include="yuGridScript.h" />
     <ClInclude Include="yuInput.h" />
     <ClInclude Include="yuLayer.h" />
     <ClInclude Include="yuMaterial.h" />
     <ClInclude Include="yuMath.h" />
     <ClInclude Include="yuMesh.h" />
     <ClInclude Include="yuMeshRenderer.h" />
+    <ClInclude Include="yuMonster.h" />
+    <ClInclude Include="yuObject.h" />
+    <ClInclude Include="yuPlayer.h" />
+    <ClInclude Include="yuPlayerScript.h" />
+    <ClInclude Include="yuPlayScene.h" />
+    <ClInclude Include="yuPrefab.h" />
     <ClInclude Include="yuRenderer.h" />
     <ClInclude Include="yuResource.h" />
     <ClInclude Include="yuResources.h" />
     <ClInclude Include="yuScene.h" />
     <ClInclude Include="yuSceneManager.h" />
+    <ClInclude Include="yuScript.h" />
     <ClInclude Include="yuShader.h" />
+    <ClInclude Include="yuSpriteRenderer.h" />
     <ClInclude Include="yuTexture.h" />
     <ClInclude Include="yuTime.h" />
+    <ClInclude Include="yuTitleScene.h" />
     <ClInclude Include="yuTransform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="yuAnimation.cpp" />
+    <ClCompile Include="yuAnimator.cpp" />
+    <ClCompile Include="yuCollider3D.cpp" />
+    <ClCompile Include="yuCollider2D.cpp" />
+    <ClCompile Include="yuCollisionManager.cpp" />
     <ClCompile Include="yuApplication.cpp" />
+    <ClCompile Include="yuBaseRenderer.cpp" />
+    <ClCompile Include="yuCamera.cpp" />
+    <ClCompile Include="yuCameraScript.cpp" />
+    <ClCompile Include="yuCollider.cpp" />
     <ClCompile Include="yuComponent.cpp" />
     <ClCompile Include="yuConstantBuffer.cpp" />
     <ClCompile Include="yuEntity.cpp" />
     <ClCompile Include="yuGameObject.cpp" />
     <ClCompile Include="yuGraphicDevice_DX11.cpp" />
+    <ClCompile Include="yuGridScript.cpp" />
     <ClCompile Include="yuInput.cpp" />
     <ClCompile Include="yuLayer.cpp" />
     <ClCompile Include="yuMaterial.cpp" />
     <ClCompile Include="yuMath.cpp" />
     <ClCompile Include="yuMesh.cpp" />
     <ClCompile Include="yuMeshRenderer.cpp" />
+    <ClCompile Include="yuMonster.cpp" />
+    <ClCompile Include="yuPlayer.cpp" />
+    <ClCompile Include="yuPlayerScript.cpp" />
+    <ClCompile Include="yuPlayScene.cpp" />
+    <ClCompile Include="yuPrefab.cpp" />
     <ClCompile Include="yuRenderer.cpp" />
     <ClCompile Include="yuResource.cpp" />
     <ClCompile Include="yuResources.cpp" />
     <ClCompile Include="yuScene.cpp" />
     <ClCompile Include="yuSceneManager.cpp" />
+    <ClCompile Include="yuScript.cpp" />
     <ClCompile Include="yuShader.cpp" />
+    <ClCompile Include="yuSpriteRenderer.cpp" />
     <ClCompile Include="yuTexture.cpp" />
     <ClCompile Include="yuTime.cpp" />
+    <ClCompile Include="yuTitleScene.cpp" />
     <ClCompile Include="yuTransform.cpp" />
   </ItemGroup>
   <ItemGroup>

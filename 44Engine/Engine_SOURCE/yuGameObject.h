@@ -1,10 +1,11 @@
 #pragma once
 #include "yuComponent.h"
-
+#include "yuScript.h"
+#include "yuEntity.h"
 
 namespace yu
 {
-	class GameObject
+	class GameObject : public Entity
 	{
 	public:
 		enum eState
@@ -22,6 +23,25 @@ namespace yu
 		virtual void FixedUpdate();
 		virtual void Render();
 
+		template <typename T>
+		T* AddComponent()
+		{
+			T* comp = new T();
+			eComponentType order = comp->GetOrder();
+
+			if (order != eComponentType::Script)
+			{
+				mComponents[(UINT)order] = comp;
+				mComponents[(UINT)order]->SetOwner(this);
+			}
+			else
+			{
+				mScripts.push_back(dynamic_cast<Script*>(comp));
+				comp->SetOwner(this);
+			}
+
+			return comp;
+		}
 		void AddComponent(Component* comp);
 
 		template <typename T>
@@ -38,9 +58,33 @@ namespace yu
 
 			return nullptr;
 		}
+		const std::vector<Script*>& GetScripts() { return mScripts; }
+
+		bool IsDead()
+		{
+			if (mState == eState::Dead)
+				return true;
+			
+			return false;
+		}
+		void Pause() { mState = eState::Paused; }
+		void Death() { mState = eState::Dead; }
+		eState GetState() { return mState; }
+		
+		bool IsDontDestroy() { return mbDontDestroy; }
+		void DontDestroy(bool enable) { mbDontDestroy = enable; }
+		eLayerType GetLayerType() { return mType; }
+		void SetLayerType(eLayerType type) { mType = type; }
+
+	protected:
+		std::vector<Component*> mComponents;
 
 	private:
 		eState mState;
-		std::vector<Component*> mComponents;
+		eLayerType mType;
+		std::vector<Script*> mScripts;
+		bool mbDontDestroy;
+		//Scene* mScene;
 	};
 }
+

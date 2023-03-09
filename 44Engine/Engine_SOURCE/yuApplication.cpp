@@ -4,6 +4,7 @@
 #include "yuInput.h"
 #include "yuSceneManager.h"
 #include "yuResources.h"
+#include "yuCollisionManager.h"
 
 namespace yu
 {
@@ -16,14 +17,14 @@ namespace yu
 
 	Application::~Application()
 	{
-
+		
 	}
 
 	void Application::Initalize()
 	{
 		Time::Initialize();
 		Input::Initialize();
-
+		CollisionManager::Initialize();
 		renderer::Initialize();
 		SceneManager::Initalize();
 	}
@@ -34,13 +35,14 @@ namespace yu
 	{
 		Time::Update();
 		Input::Update();
-
+		CollisionManager::Update();
 		SceneManager::Update();
 	}
 
 	// GPU update
 	void Application::FixedUpdate()
 	{
+		CollisionManager::FixedUpdate();
 		SceneManager::FixedUpdate();
 	}
 
@@ -51,10 +53,18 @@ namespace yu
 		graphicDevice->Clear();
 		graphicDevice->AdjustViewPorts();
 
-		SceneManager::Render();
-
+		//SceneManager::Render();
+		renderer::Render();
+		CollisionManager::Render();
 		//graphicDevice->Render();
-		graphicDevice->Present();
+		//graphicDevice->Present();
+
+		
+	}
+
+	void Application::Destroy()
+	{
+
 	}
 
 	// Running main engine loop
@@ -63,11 +73,17 @@ namespace yu
 		Update();
 		FixedUpdate();
 		Render();
+		Destroy();
+	}
+
+	void Application::Present()
+	{
+		graphicDevice->Present();
 	}
 
 	void Application::Release()
 	{
-		Resources::Release();
+		Resources::deleteTest();
 	}
 
 	void Application::SetWindow(HWND hwnd, UINT width, UINT height)

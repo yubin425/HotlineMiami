@@ -1,5 +1,6 @@
 #include "yuShader.h"
 #include "yuGraphicDevice_DX11.h"
+#include "yuRenderer.h"
 
 using namespace yu::graphics;
 
@@ -8,6 +9,9 @@ namespace yu
 	Shader::Shader()
 		: Resource(eResourceType::GraphicShader)
 		, mTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
+		, mRSType(eRSType::SolidBack)
+		, mDSType(eDSType::Less)
+		, mBSType(eBSType::AlphaBlend)
 	{
 
 	}
@@ -22,7 +26,7 @@ namespace yu
 		return E_NOTIMPL;
 	}
 
-	void Shader::Create(graphics::eShaderStage stage, const std::wstring& file, const std::string& funcName)
+	void Shader::Create(eShaderStage stage, const std::wstring& file, const std::string& funcName)
 	{
 		mErrorBlob = nullptr;
 
@@ -40,6 +44,12 @@ namespace yu
 								, mVSBlob.GetAddressOf()
 								, mErrorBlob.GetAddressOf());
 
+			//if (mErrorBlob)
+			//{
+			//	OutputDebugStringA((char*)mErrorBlob->GetBufferPointer());
+			//	mErrorBlob->Release();
+			//}
+
 			GetDevice()->CreateVertexShader(mVSBlob->GetBufferPointer()
 														, mVSBlob->GetBufferSize()
 														, nullptr
@@ -51,6 +61,12 @@ namespace yu
 				, funcName.c_str(), "ps_5_0", 0, 0
 				, mPSBlob.GetAddressOf()
 				, mErrorBlob.GetAddressOf());
+
+			//if (mErrorBlob)
+			//{
+			//	OutputDebugStringA((char*)mErrorBlob->GetBufferPointer());
+			//	mErrorBlob->Release();
+			//}
 
 			GetDevice()->CreatePixelShader(mPSBlob->GetBufferPointer()
 				, mPSBlob->GetBufferSize()
@@ -66,6 +82,14 @@ namespace yu
 
 		GetDevice()->BindVertexShader(mVS.Get(), nullptr, 0);
 		GetDevice()->BindPixelShader(mPS.Get(), nullptr, 0);
+
+		Microsoft::WRL::ComPtr<ID3D11RasterizerState> rs = renderer::rasterizerStates[(UINT)mRSType];
+		Microsoft::WRL::ComPtr<ID3D11DepthStencilState> ds = renderer::depthstencilStates[(UINT)mDSType];
+		Microsoft::WRL::ComPtr<ID3D11BlendState> bs = renderer::blendStates[(UINT)mBSType];
+
+		GetDevice()->BindRasterizerState(rs.Get());
+		GetDevice()->BindDepthStencilState(ds.Get());
+		GetDevice()->BindBlendState(bs.Get());
 	}
 
 }

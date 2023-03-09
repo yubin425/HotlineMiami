@@ -1,16 +1,36 @@
 #include "yuGameObject.h"
-
+#include "yuTransform.h"
 
 namespace yu
 {
 	GameObject::GameObject()
 		: mState(eState::Active)
+		, mType(eLayerType::None)
+		, mbDontDestroy(false)
 	{
 		mComponents.resize((UINT)eComponentType::End);
+		AddComponent(new Transform());
 	}
 
 	GameObject::~GameObject()
 	{
+		for (Component* comp : mComponents)
+		{
+			if (comp == nullptr)
+				continue;
+			
+			delete comp;
+			comp = nullptr;
+		}
+
+		for (Component* scrComp : mScripts)
+		{
+			if (scrComp == nullptr)
+				continue;
+
+			delete scrComp;
+			scrComp = nullptr;
+		}
 	}
 
 	void GameObject::Initalize()
@@ -21,6 +41,14 @@ namespace yu
 				continue;
 
 			comp->Initalize();
+		}
+
+		for (Component* script : mScripts)
+		{
+			if (script == nullptr)
+				continue;
+
+			script->Initalize();
 		}
 	}
 
@@ -33,6 +61,14 @@ namespace yu
 
 			comp->Update();
 		}
+
+		for (Component* script : mScripts)
+		{
+			if (script == nullptr)
+				continue;
+
+			script->Update();
+		}
 	}
 
 	void GameObject::FixedUpdate()
@@ -43,6 +79,14 @@ namespace yu
 				continue;
 
 			comp->FixedUpdate();
+		}
+
+		for (Component* script : mScripts)
+		{
+			if (script == nullptr)
+				continue;
+
+			script->FixedUpdate();
 		}
 	}
 
@@ -55,12 +99,29 @@ namespace yu
 
 			comp->Render();
 		}
+
+		for (Component* script : mScripts)
+		{
+			if (script == nullptr)
+				continue;
+
+			script->Render();
+		}
 	}
 
 	void GameObject::AddComponent(Component* comp)
 	{
-		int order = comp->GetOrder();
-		mComponents[order] = comp;
-		mComponents[order]->SetOwner(this);
+		eComponentType order = comp->GetOrder();
+
+		if (order != eComponentType::Script)
+		{
+			mComponents[(UINT)order] = comp;
+			mComponents[(UINT)order]->SetOwner(this);
+		}
+		else
+		{
+			mScripts.push_back(dynamic_cast<Script*>(comp));
+			comp->SetOwner(this);
+		}
 	}
 }

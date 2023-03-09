@@ -5,7 +5,7 @@
 namespace yu
 {
 	MeshRenderer::MeshRenderer()
-		: Component(eComponentType::Mesh)
+		: BaseRenderer(eComponentType::MeshRenerer)
 	{
 	}
 
@@ -29,9 +29,11 @@ namespace yu
 	{
 		GetOwner()->GetComponent<Transform>()->SetConstantBuffer();
 
-		mMaterial->Bind();
-		mMesh->BindBuffer();
+		GetMaterial()->Bind();
+		GetMesh()->BindBuffer();
 
-		mMesh->Render();
+		GetMesh()->Render();
+
+		GetMaterial()->Clear();
 	}
 }
