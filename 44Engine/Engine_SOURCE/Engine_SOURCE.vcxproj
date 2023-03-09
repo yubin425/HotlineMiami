@@ -170,6 +170,7 @@
     <ClInclude Include="yuEngine.h" />
     <ClInclude Include="yuEntity.h" />
     <ClInclude Include="yuEnums.h" />
+    <ClInclude Include="yuFadeScript.h" />
     <ClInclude Include="yuGameObject.h" />
     <ClInclude Include="yuGraphicDevice_DX11.h" />
     <ClInclude Include="yuGraphics.h" />
@@ -213,6 +214,7 @@
     <ClCompile Include="yuComponent.cpp" />
     <ClCompile Include="yuConstantBuffer.cpp" />
     <ClCompile Include="yuEntity.cpp" />
+    <ClCompile Include="yuFadeScript.cpp" />
     <ClCompile Include="yuGameObject.cpp" />
     <ClCompile Include="yuGraphicDevice_DX11.cpp" />
     <ClCompile Include="yuGridScript.cpp" />

@@ -16,6 +16,7 @@
 #define CBSLOT_MATERIAL 1
 #define CBSLOT_GRID 2
 #define CBSLOT_ANIMATION 3
+#define CBSLOT_FADE 4
 
 
 namespace yu::graphics
@@ -103,6 +104,7 @@ namespace yu::graphics
 		Material,
 		Grid,
 		Animation,
+		Fade,
 		End,
 	};
 

@@ -1,1 +1,0 @@
-#include "yaMaterial.h"

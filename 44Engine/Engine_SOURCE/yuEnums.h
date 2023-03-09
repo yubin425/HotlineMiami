@@ -14,9 +14,11 @@ namespace yu::enums
 		None = 0,
 		Camera,
 		Grid,
+		
 		Monster,
 		Player,
 
+		Fade,
 		UI,
 		End = 16,
 	};

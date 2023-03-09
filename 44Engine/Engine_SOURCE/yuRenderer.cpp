@@ -165,6 +165,12 @@ namespace yu::renderer
 			, gridShader->GetVSBlobBufferSize()
 			, gridShader->GetInputLayoutAddressOf());
 
+		std::shared_ptr<Shader> fadeShader = Resources::Find<Shader>(L"FadeShader");
+		GetDevice()->CreateInputLayout(arrLayoutDesc, 3
+			, fadeShader->GetVSBlobBufferPointer()
+			, fadeShader->GetVSBlobBufferSize()
+			, fadeShader->GetInputLayoutAddressOf());
+
 
 		std::shared_ptr<Shader> debugShader = Resources::Find<Shader>(L"DebugShader");
 		GetDevice()->CreateInputLayout(arrLayoutDesc, 3
@@ -319,6 +325,10 @@ namespace yu::renderer
 		constantBuffers[(UINT)eCBType::Grid] = new ConstantBuffer(eCBType::Grid);
 		constantBuffers[(UINT)eCBType::Grid]->Create(sizeof(GridCB));
 
+		constantBuffers[(UINT)eCBType::Fade] = new ConstantBuffer(eCBType::Fade);
+		constantBuffers[(UINT)eCBType::Fade]->Create(sizeof(FadeCB));
+
+
 		constantBuffers[(UINT)eCBType::Animation] = new ConstantBuffer(eCBType::Animation);
 		constantBuffers[(UINT)eCBType::Animation]->Create(sizeof(AnimationCB));
 	}
@@ -355,6 +365,16 @@ namespace yu::renderer
 		gridShader->SetBSState(eBSType::AlphaBlend);
 
 		Resources::Insert<Shader>(L"GridShader", gridShader);
+
+		// Fade Shader
+		std::shared_ptr<Shader> fadeShader = std::make_shared<Shader>();
+		fadeShader->Create(eShaderStage::VS, L"FadeVS.hlsl", "main");
+		fadeShader->Create(eShaderStage::PS, L"FadePS.hlsl", "main");
+		fadeShader->SetRSState(eRSType::SolidNone);
+		fadeShader->SetDSState(eDSType::NoWrite);
+		fadeShader->SetBSState(eBSType::AlphaBlend);
+
+		Resources::Insert<Shader>(L"FadeShader", fadeShader);
 
 		// Debug Shader
 		std::shared_ptr<Shader> debugShader = std::make_shared<Shader>();
@@ -409,6 +429,14 @@ namespace yu::renderer
 		std::shared_ptr<Material> gridMaterial = std::make_shared<Material>();
 		gridMaterial->SetShader(gridShader);
 		Resources::Insert<Material>(L"GridMaterial", gridMaterial);
+
+
+		// Fade
+		std::shared_ptr<Shader> fadeShader = Resources::Find<Shader>(L"FadeShader");
+		std::shared_ptr<Material> fadeMaterial = std::make_shared<Material>();
+		fadeMaterial->SetShader(fadeShader);
+		Resources::Insert<Material>(L"FadeMaterial", fadeMaterial);
+
 
 		// Debug
 		std::shared_ptr<Shader> debugShader = Resources::Find<Shader>(L"DebugShader");

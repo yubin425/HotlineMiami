@@ -33,6 +33,12 @@ cbuffer Animation : register(b3)
     uint used;
 }
 
+cbuffer Fade : register(b4)
+{
+    float Cumultime;
+    //bool fadein;
+}
+
 SamplerState pointSampler : register(s0);
 SamplerState linearSampler : register(s1);
 SamplerState anisotropicSampler : register(s2);

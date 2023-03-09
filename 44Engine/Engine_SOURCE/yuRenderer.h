@@ -44,6 +44,11 @@ namespace yu::renderer
 		Vector2 resolution;
 	};
 
+	CBUFFER(FadeCB, CBSLOT_FADE)
+	{
+		float cumultime;
+	};
+
 	CBUFFER(AnimationCB, CBSLOT_ANIMATION)
 	{
 		Vector2 leftTop;

@@ -15,6 +15,7 @@
 #include "yuPlayer.h"
 #include "yuMonster.h"
 #include "yuCollisionManager.h"
+#include "yuFadeScript.h"
 
 namespace yu
 {
@@ -54,6 +55,14 @@ namespace yu
 		//gridScript->SetCamera(cameraComp);
 
 
+		// Fade Object
+
+		GameObject* fadeObject = object::Instantiate<GameObject>(eLayerType::Fade);
+		MeshRenderer* fadeMr = fadeObject->AddComponent<MeshRenderer>();
+		fadeMr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+		fadeMr->SetMaterial(Resources::Find<Material>(L"FadeMaterial"));
+		FadeScript* fadeScript = fadeObject->AddComponent<FadeScript>();
+		object::DontDestroyOnLoad(fadeObject);
 
 
 		// Light Object

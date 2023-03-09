@@ -1,9 +1,0 @@
-#pragma once
-#include "yaComponent.h"
-
-namespace ya
-{
-	class Transform : public Component
-	{
-	};
-}
