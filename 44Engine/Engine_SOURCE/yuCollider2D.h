@@ -28,8 +28,12 @@ namespace yu
 		void SetCenter(Vector2 center) { mCenter = center; }
 		void SetRadius(float radius) { mRadius = radius; }
 		bool IsTriiger() { return mbTrigger; }
+
 		UINT GetID() { return mID; }
 		Vector3 GetPosition() { return mPosition; }
+		eColliderType GetType() { return mType;  }
+		float GetRadius() { return mRadius; }
+		Vector2 SetSize() {return mSize; }
 
 	private:
 		static UINT ColliderNumber;
