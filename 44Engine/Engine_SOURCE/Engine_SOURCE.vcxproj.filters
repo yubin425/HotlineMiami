@@ -212,6 +212,9 @@
     <ClCompile Include="yuFadeScript.cpp">
       <Filter>Resource\Script</Filter>
     </ClCompile>
+    <ClCompile Include="yuEndingScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonInclude.h">
@@ -344,6 +347,9 @@
     <ClInclude Include="yuAnimation.h" />
     <ClInclude Include="yuFadeScript.h">
       <Filter>Resource\Script</Filter>
+    </ClInclude>
+    <ClInclude Include="yuEndingScene.h">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

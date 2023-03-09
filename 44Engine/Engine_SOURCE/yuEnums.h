@@ -4,14 +4,16 @@ namespace yu::enums
 {
 	enum class eSceneType
 	{
-		Tilte,
+		Title,
 		Play,
+		Ending,
 		End,
 	};
 
 	enum class eLayerType
 	{
 		None = 0,
+		Background,
 		Camera,
 		Grid,
 		

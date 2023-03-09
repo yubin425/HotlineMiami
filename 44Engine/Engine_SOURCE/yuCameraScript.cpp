@@ -25,27 +25,19 @@ namespace yu
 
 		Vector3 pos = tr->GetPosition();
 
-		if (Input::GetKeyState(eKeyCode::D) == eKeyState::PRESSED)
+		if (Input::GetKeyState(eKeyCode::RIGHT) == eKeyState::PRESSED)
 		{
 			pos += 100.0f * tr->Right() * Time::DeltaTime();
 		}
-		else if (Input::GetKeyState(eKeyCode::A) == eKeyState::PRESSED)
+		else if (Input::GetKeyState(eKeyCode::LEFT) == eKeyState::PRESSED)
 		{
 			pos += 100.0f * -tr->Right() * Time::DeltaTime();
 		}
-		else if (Input::GetKeyState(eKeyCode::W) == eKeyState::PRESSED)
-		{
-			pos += 100.0f * tr->Foward() * Time::DeltaTime();
-		}
-		else if (Input::GetKeyState(eKeyCode::S) == eKeyState::PRESSED)
-		{
-			pos += 100.0f * -tr->Foward() * Time::DeltaTime();
-		}
-		else if (Input::GetKeyState(eKeyCode::Q) == eKeyState::PRESSED)
+		else if (Input::GetKeyState(eKeyCode::UP) == eKeyState::PRESSED)
 		{
 			pos += 100.0f * tr->Up() * Time::DeltaTime();
 		}
-		else if (Input::GetKeyState(eKeyCode::E) == eKeyState::PRESSED)
+		else if (Input::GetKeyState(eKeyCode::DOWN) == eKeyState::PRESSED)
 		{
 			pos += 100.0f * -tr->Up() * Time::DeltaTime();
 		}

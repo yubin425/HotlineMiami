@@ -11,6 +11,7 @@
 #include "yuGridScript.h"
 #include "yuTitleScene.h"
 #include "yuPlayScene.h"
+#include "yuEndingScene.h"
 
 namespace yu
 {
@@ -21,10 +22,11 @@ namespace yu
 	{
 		mScenes.resize((UINT)eSceneType::End);
 
-		mScenes[(UINT)eSceneType::Tilte] = new TitleScene();
+		mScenes[(UINT)eSceneType::Title] = new TitleScene();
 		mScenes[(UINT)eSceneType::Play] = new PlayScene();
+		mScenes[(UINT)eSceneType::Ending] = new EndingScene();
 
-		mActiveScene = mScenes[(UINT)eSceneType::Tilte];
+		mActiveScene = mScenes[(UINT)eSceneType::Title];
 
 		for (Scene* scene : mScenes)
 		{

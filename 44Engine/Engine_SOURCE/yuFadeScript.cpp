@@ -28,7 +28,7 @@ namespace yu
 
     void FadeScript::Update()
     {
-        fadein = true; //fade in을 할지 out을 할지 결정할 수 있다. 
+        fadein = false; //fade in을 할지 out을 할지 결정할 수 있다. 
         float time = Time::DeltaTime();
         float FadeTime = 2.0f; //Fadeinout의 시간
         if (CumulTime <= 1)
