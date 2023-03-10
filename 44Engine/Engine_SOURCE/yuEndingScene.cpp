@@ -33,8 +33,8 @@ namespace yu
 		cameraObj->AddComponent<CameraScript>();
 
 
-		/*// Ending image
-		GameObject*	EndingSprite = object::Instantiate<GameObject>(eLayerType::Background);
+		// Ending image
+		/*GameObject* EndingSprite = object::Instantiate<GameObject>(eLayerType::Background);
 		EndingSprite->SetName(L"ENDING");
 		Transform* spriteEr = EndingSprite->GetComponent<Transform>();
 		spriteEr->SetPosition(Vector3(0.0f, 0.0f, 10.0f));
@@ -47,8 +47,8 @@ namespace yu
 		spriteMaterial->SetTexture(ST);
 
 		sr->SetMaterial(spriteMaterial);
-		sr->SetMesh(mesh);*/
-
+		sr->SetMesh(mesh);
+		*/
 
 		Scene::Initalize();
 	}
@@ -57,6 +57,9 @@ namespace yu
 	{
 		if (Input::GetKeyDown(eKeyCode::N))
 		{
+			std::shared_ptr<Material> spriteMaterial = Resources::Find<Material>(L"SpriteMaterial");
+			std::shared_ptr <Texture> TitleST = Resources::Find<Texture>(L"Titleimage");
+			spriteMaterial->SetTexture(TitleST);
 			SceneManager::LoadScene(eSceneType::Title);
 		}
 

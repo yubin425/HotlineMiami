@@ -14,6 +14,7 @@ namespace yu
 		// 충돌체의 종류 갯수만큼만 있으면 된다.
 		mDebugObjects.resize((UINT)eColliderType::End);
 
+		//rect 메쉬 
 		std::shared_ptr<Mesh> rectMesh = Resources::Find<Mesh>(L"DebugRectMesh");
 		std::shared_ptr<Material> material = Resources::Find<Material>(L"DebugMaterial");
 
@@ -24,6 +25,7 @@ namespace yu
 		renderer->SetMaterial(material);
 		renderer->SetMesh(rectMesh);
 
+		//circle 메쉬 
 		std::shared_ptr<Mesh> circleMesh = Resources::Find<Mesh>(L"CircleMesh");
 
 		mDebugObjects[(UINT)eColliderType::Circle] = new DebugObject();

@@ -73,6 +73,7 @@ namespace yu
 
 		Titlesr->SetMaterial(spriteMaterial);
 		Titlesr->SetMesh(Titlemesh);
+		object::DontDestroyOnLoad(TitleSprite);
 
 
 		//// HPBAR
@@ -99,7 +100,7 @@ namespace yu
 			//tr->SetRotation(Vector3(0.0f, 0.0f, XM_PIDIV2 / 2.0f));
 			tr->SetScale(Vector3(2.0f, 1.0f, 1.0f));
 			Collider2D* collider = obj->AddComponent<Collider2D>();
-			collider->SetType(eColliderType::Circle);
+			collider->SetType(eColliderType::Rect);
 			//collider->SetCenter(Vector2(0.2f, 0.2f));
 			//collider->SetSize(Vector2(1.5f, 1.5f));
 
@@ -113,7 +114,7 @@ namespace yu
 			mr->SetMaterial(mateiral);
 			std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
 			mr->SetMesh(mesh);
-		 obj->AddComponent<PlayerScript>();
+		    obj->AddComponent<PlayerScript>();
 			object::DontDestroyOnLoad(obj);
 		}
 
@@ -139,6 +140,9 @@ namespace yu
 	{
 		if (Input::GetKeyDown(eKeyCode::N))
 		{
+			std::shared_ptr<Material> spriteMaterial = Resources::Find<Material>(L"SpriteMaterial");
+			std::shared_ptr <Texture> ST = Resources::Find<Texture>(L"Endingimage");
+			spriteMaterial->SetTexture(ST);
 			SceneManager::LoadScene(eSceneType::Play);
 		}
 

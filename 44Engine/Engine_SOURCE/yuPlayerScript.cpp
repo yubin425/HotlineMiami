@@ -22,7 +22,12 @@ namespace yu
 	void PlayerScript::Update()
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
-		//Vector3 rot = tr->GetRotation();
+		mMousPosition = Input::GetMousPosition();
+		pos = tr->GetPosition();
+
+		Vector3 rotvec = pos - mMousPosition;
+		//rotvec.To ToEuler
+
 		//rot.z += 10.0f * Time::DeltaTime();
 		//tr->SetRotation(rot);
 		
