@@ -24,6 +24,7 @@ namespace yu
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		mMousPosition = Input::GetMousPosition();
 		pos = tr->GetPosition();
+		tr->SetPosition(Vector3(mMousPosition));
 
 		Vector3 rotvec = pos - mMousPosition;
 		//rotvec.To ToEuler
@@ -42,7 +43,6 @@ namespace yu
 			rotfi=Quaternion::LookRotation(rot,pos);
 			tr->SetRotation(rotfi);
 		*/
-
 
 		if (Input::GetKeyState(eKeyCode::D) == eKeyState::PRESSED)
 		{
