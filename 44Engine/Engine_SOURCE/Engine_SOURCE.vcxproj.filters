@@ -207,13 +207,17 @@
     <ClCompile Include="yuMonster.cpp">
       <Filter>Component\Script\Contents</Filter>
     </ClCompile>
-    <ClCompile Include="yuAnimator.cpp" />
-    <ClCompile Include="yuAnimation.cpp" />
     <ClCompile Include="yuFadeScript.cpp">
       <Filter>Resource\Script</Filter>
     </ClCompile>
     <ClCompile Include="yuEndingScene.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="yuAnimation.cpp">
+      <Filter>Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="yuAnimator.cpp">
+      <Filter>Component\Animator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -343,13 +347,17 @@
     <ClInclude Include="yuMonster.h">
       <Filter>Component\Script\Contents</Filter>
     </ClInclude>
-    <ClInclude Include="yuAnimator.h" />
-    <ClInclude Include="yuAnimation.h" />
     <ClInclude Include="yuFadeScript.h">
       <Filter>Resource\Script</Filter>
     </ClInclude>
     <ClInclude Include="yuEndingScene.h">
       <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yuAnimation.h">
+      <Filter>Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="yuAnimator.h">
+      <Filter>Component\Animator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

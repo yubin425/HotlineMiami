@@ -52,9 +52,16 @@ namespace yu
 	void Animation::Create(const std::wstring& name
 		, std::shared_ptr<Texture> atlas
 		, Vector2 leftTop, Vector2 size, Vector2 offset
-		, UINT columnLegth, UINT spriteLegth, float duration)
+		, UINT columnLegth, UINT spriteLegth, float duration) //몇번 이미지까지 사용할지 등
 	{
+		mAnimationName = name;
+		
+		float width = (float)atlas->GetWidth();
+		float height = (float)atlas->GetHeight();
+		
+		
 	}
+
 
 	void Animation::BindShader()
 	{
