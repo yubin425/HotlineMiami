@@ -16,6 +16,7 @@
 #include "yuMonster.h"
 #include "yuCollisionManager.h"
 #include "yuFadeScript.h"
+#include "yuAnimator.h"
 
 namespace yu
 {
@@ -37,6 +38,7 @@ namespace yu
 		cameraComp->TurnLayerMask(eLayerType::UI, false);
 		cameraObj->AddComponent<CameraScript>();
 		mainCamera = cameraComp;
+
 		
 		//renderer::cameras[0] = cameraComp;
 
@@ -49,24 +51,25 @@ namespace yu
 
 
 		// Fade Object
-
+		{
 		GameObject* fadeObject = object::Instantiate<GameObject>(eLayerType::Fade);
 		MeshRenderer* fadeMr = fadeObject->AddComponent<MeshRenderer>();
 		fadeMr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 		fadeMr->SetMaterial(Resources::Find<Material>(L"FadeMaterial"));
 		FadeScript* fadeScript = fadeObject->AddComponent<FadeScript>();
 		//object::DontDestroyOnLoad(fadeObject);
-
+		}
 
 		// Title image
+		{
 		GameObject* TitleSprite = object::Instantiate<GameObject>(eLayerType::Background);
 		TitleSprite->SetName(L"TITLE");
 		Transform* spriteTr = TitleSprite->GetComponent<Transform>();
 		spriteTr->SetPosition(Vector3(1.0f, 1.0f, 10.0f));
-		spriteTr->SetScale(Vector3(17.0f, 10.0f, 10.0f));
+		spriteTr->SetScale(Vector3(17.0f, 10.0f, 1.f));
 		SpriteRenderer* Titlesr = TitleSprite->AddComponent<SpriteRenderer>();
 		std::shared_ptr<Mesh> Titlemesh = Resources::Find<Mesh>(L"RectMesh");
-	
+
 		std::shared_ptr<Material> spriteMaterial = Resources::Find<Material>(L"SpriteMaterial");
 		std::shared_ptr <Texture> TitleST = Resources::Find<Texture>(L"Titleimage");
 		spriteMaterial->SetTexture(TitleST);
@@ -74,7 +77,7 @@ namespace yu
 		Titlesr->SetMaterial(spriteMaterial);
 		Titlesr->SetMesh(Titlemesh);
 		object::DontDestroyOnLoad(TitleSprite);
-
+		}
 
 		//// HPBAR
 		//GameObject* hpBar = object::Instantiate<GameObject>(eLayerType::Player);
@@ -90,7 +93,6 @@ namespace yu
 		//hpsr->SetMesh(hpmesh);
 		//hpsr->SetMaterial(hpspriteMaterial);
 		
-
 		//PLAYER RECT
 		{
 			Player* obj = object::Instantiate<Player>(eLayerType::Player);
@@ -98,25 +100,27 @@ namespace yu
 			Transform* tr = obj->GetComponent<Transform>();
 			tr->SetPosition(Vector3(2.0f, 0.0f, 5.0f));
 			//tr->SetRotation(Vector3(0.0f, 0.0f, XM_PIDIV2 / 2.0f));
-			tr->SetScale(Vector3(2.0f, 1.0f, 1.0f));
+			tr->SetScale(Vector3(5.0f, 5.0f, 1.0f));
 			Collider2D* collider = obj->AddComponent<Collider2D>();
 			collider->SetType(eColliderType::Rect);
-			//collider->SetCenter(Vector2(0.2f, 0.2f));
-			//collider->SetSize(Vector2(1.5f, 1.5f));
+			collider->SetSize(Vector2(0.18f, 0.18f));
+
+			std::shared_ptr <Texture> tex = Resources::Find<Texture>(L"PlayerWalkSprite");
+			Animator* animator = obj->AddComponent<Animator>();
+			animator->Create(L"Idle", tex, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 8, 0.1f);
+			animator->Play(L"Idle", true);
+
 
 			SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
-			std::shared_ptr<Material> mateiral = Resources::Find<Material>(L"RectMaterial");
-			std::shared_ptr <Texture> tex = Resources::Find<Texture>(L"PlayerWalkSprite");
-			mateiral->SetTexture(tex);
-			mateiral->SetRenderingMode(eRenderingMode::Transparent);
-
-
+			std::shared_ptr<Material> mateiral = Resources::Find<Material>(L"PlayerMaterial");
 			mr->SetMaterial(mateiral);
 			std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
 			mr->SetMesh(mesh);
-		    obj->AddComponent<PlayerScript>();
+		   obj->AddComponent<PlayerScript>();
 			object::DontDestroyOnLoad(obj);
 		}
+
+
 
 		////SMILE RECT CHild
 		//GameObject* child = object::Instantiate<GameObject>(eLayerType::Player);
@@ -133,6 +137,7 @@ namespace yu
 
 		
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
+		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Player, true);
 
 		Scene::Initalize();
 	}

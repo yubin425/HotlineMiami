@@ -31,6 +31,8 @@ namespace yu
 
 		UINT GetID() { return mID; }
 		Vector3 GetPosition() { return mPosition; }
+		Vector2 GetSize() { return mSize; }
+
 		eColliderType GetType() { return mType;  }
 		float GetRadius() { return mRadius; }
 		Vector2 SetSize() {return mSize; }

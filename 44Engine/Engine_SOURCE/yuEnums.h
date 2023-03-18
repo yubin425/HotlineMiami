@@ -13,9 +13,10 @@ namespace yu::enums
 	enum class eLayerType
 	{
 		None = 0,
+		Grid,
 		Background,
 		Camera,
-		Grid,
+		
 		
 		Monster,
 		Player,
@@ -64,6 +65,14 @@ namespace yu::enums
 		Circle,
 		Box,
 		Sphere,
+		End,
+	};
+
+	enum class eAnimationType
+	{
+		None,
+		SecondDimension,
+		ThirdDimension,
 		End,
 	};
 

@@ -10,7 +10,7 @@ namespace yu
 		, mActiveAnimation(nullptr)
 		, mbLoop(false)
 	{
-	
+
 	}
 	Animator::~Animator()
 	{
@@ -34,18 +34,24 @@ namespace yu
 		if (mActiveAnimation == nullptr)
 			return;
 
-		if (mActiveAnimation->IsComplete() && mbLoop)
+		Events* events
+			= FindEvents(mActiveAnimation->AnimationName());
+		if (mActiveAnimation->IsComplete())
 		{
-			Events* events 
-				= FindEvents(mActiveAnimation->AnimationName());
-
 			if (events)
 				events->mCompleteEvent();
 
-			mActiveAnimation->Reset();
+			if (mbLoop)
+				mActiveAnimation->Reset();
 		}
 
-		mActiveAnimation->Update();
+		UINT spriteIndex = mActiveAnimation->Update();
+		if (spriteIndex != -1 &&
+			events->mEvents[spriteIndex].mEvent)
+		{
+			events->mEvents[spriteIndex].mEvent();
+		}
+
 	}
 	void Animator::FixedUpdate()
 	{
@@ -55,8 +61,8 @@ namespace yu
 	}
 
 	bool Animator::Create(const std::wstring& name, std::shared_ptr<Texture> atlas
-						, Vector2 leftTop, Vector2 size, Vector2 offset
-						, UINT columnLegth, UINT spriteLegth, float duration)
+		, Vector2 leftTop, Vector2 size, Vector2 offset
+		, UINT spriteLegth, float duration)
 	{
 		if (atlas == nullptr)
 			return false;
@@ -67,11 +73,14 @@ namespace yu
 
 		animation = new Animation();
 		animation->Create(name, atlas, leftTop
-						 , size, offset, columnLegth
-						 , spriteLegth, duration);
-
+			, size, offset
+			, spriteLegth, duration);
 
 		mAnimations.insert(std::make_pair(name, animation));
+
+		Events* events = new Events();
+		events->mEvents.resize(spriteLegth);
+		mEvents.insert(std::make_pair(name, events));
 	}
 
 	Animation* Animator::FindAnimation(const std::wstring& name)
@@ -98,11 +107,13 @@ namespace yu
 
 		return iter->second;
 	}
-	void Animator::Play(std::wstring& name, bool loop)
+	void Animator::Play(const std::wstring& name, bool loop)
 	{
 		Animation* prevAnimation = mActiveAnimation;
-		Events* events = FindEvents(prevAnimation->AnimationName());
-		
+		Events* events = nullptr;
+		if (prevAnimation)
+			events = FindEvents(prevAnimation->AnimationName());
+
 		if (events)
 			events->mEndEvent();
 
@@ -115,7 +126,7 @@ namespace yu
 		if (events)
 			events->mStartEvent();
 	}
-	
+
 	void Animator::Binds()
 	{
 		if (mActiveAnimation == nullptr)
@@ -149,5 +160,11 @@ namespace yu
 		Events* events = FindEvents(name);
 
 		return events->mEndEvent.mEvent;
+	}
+	std::function<void()>& Animator::GetEvent(const std::wstring& name, UINT index)
+	{
+		Events* events = FindEvents(name);
+
+		return events->mEvents[index].mEvent;
 	}
 }

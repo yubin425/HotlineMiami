@@ -349,6 +349,7 @@ namespace yu::renderer
 
 		Resources::Insert<Shader>(L"SpriteShader", spriteShader);
 
+
 		// UI
 		std::shared_ptr<Shader> uiShader = std::make_shared<Shader>();
 		uiShader->Create(eShaderStage::VS, L"UserInterfaceVS.hlsl", "main");
@@ -417,6 +418,15 @@ namespace yu::renderer
 		spriteMaterial->SetShader(spriteShader);
 		spriteMaterial->SetTexture(spriteTexture);
 		Resources::Insert<Material>(L"SpriteMaterial", spriteMaterial);
+
+		// Player
+		std::shared_ptr <Texture> playerTexture = Resources::Find<Texture>(L"PlayerWalkSprite");
+		std::shared_ptr<Shader> playerShader = Resources::Find<Shader>(L"SpriteShader");
+		std::shared_ptr<Material> playerMaterial = std::make_shared<Material>();
+		playerMaterial->SetRenderingMode(eRenderingMode::Transparent);
+		playerMaterial->SetShader(playerShader);
+		playerMaterial->SetTexture(playerTexture);
+		Resources::Insert<Material>(L"PlayerMaterial", playerMaterial);
 
 		// UI
 		std::shared_ptr <Texture> uiTexture = Resources::Find<Texture>(L"HPBarTexture");

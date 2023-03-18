@@ -23,5 +23,12 @@ namespace yu
 		math::Vector2 mMousPosition;
 		math::Vector3 pos;
 
+		Matrix mView;
+		Matrix mProjection;
+
+		void Start();
+		void Action();
+		void End();
+
 	};
 }

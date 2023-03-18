@@ -1,6 +1,7 @@
 #include "yuSpriteRenderer.h"
 #include "yuGameObject.h"
 #include "yuTransform.h"
+#include "yuAnimator.h"
 
 namespace yu
 {
@@ -32,9 +33,21 @@ namespace yu
 		GetMaterial()->Bind();
 		GetMesh()->BindBuffer();
 
+		Animator* animator = GetOwner()->GetComponent<Animator>();
+		if (animator)
+		{
+			animator->Binds();
+		}
+
 		GetMesh()->Render();
 
 		GetMaterial()->Clear();
+
+		if (animator)
+		{
+			animator->Clear();
+		}
+
 	}
 
 }

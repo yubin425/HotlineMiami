@@ -15,7 +15,17 @@ namespace yu::graphics
 	{
 
 	}
+	void Texture::Clear(UINT startSlot)
+	{
+		ID3D11ShaderResourceView* srv = nullptr;
 
+		GetDevice()->SetShaderResource(eShaderStage::VS, startSlot, &srv);
+		GetDevice()->SetShaderResource(eShaderStage::DS, startSlot, &srv);
+		GetDevice()->SetShaderResource(eShaderStage::GS, startSlot, &srv);
+		GetDevice()->SetShaderResource(eShaderStage::HS, startSlot, &srv);
+		GetDevice()->SetShaderResource(eShaderStage::CS, startSlot, &srv);
+		GetDevice()->SetShaderResource(eShaderStage::PS, startSlot, &srv);
+	}
 	//test.cpp
 	HRESULT Texture::Load(const std::wstring& name)
 	{
