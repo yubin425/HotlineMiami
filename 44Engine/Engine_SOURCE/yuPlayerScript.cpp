@@ -31,60 +31,51 @@ namespace yu
 	void PlayerScript::Update()
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
-		pos = tr->GetPosition();
+		pos = tr->GetPosition(); 
+		forward = tr->Foward();
 
 		mMousPosition = Input::GetMousPosition();
 		Camera* camera = renderer::mainCamera;
 		mProjection= camera->GetProjectionMatrix();
 		mView = camera->GetViewMatrix();
 
-		mMousPosition.x = mMousPosition.x / mProjection._11;
+		mMousPosition.x = mMousPosition.x / mProjection._11 ;
 		mMousPosition.y = mMousPosition.y / mProjection._22;
+		mMousPosition.x = mMousPosition.x +1.1;
+		mMousPosition.y = mMousPosition.y + 0.8;
 
+		Vector3 dirvec =  mMousPosition-pos;
+		dirvec.z = 0.f;
 
-		tr->SetPosition(Vector3(mMousPosition.x, mMousPosition.y,pos.z));
+	
+		float angle = atan2(dirvec.y, dirvec.x)- atan2(forward.y, forward.x);
 		
-		//Vector3 rotvec = pos - mMousPosition;
-		//rotvec.To ToEuler
+		tr->SetRotation(Vector3(0.f,0.f,angle));
 
-		//rot.z += 10.0f * Time::DeltaTime();
-		//tr->SetRotation(rot);
-		
-		/* mMousPosition = Input::GetMousPosition();
-		 pos = tr->GetPosition();
-		
-			//Vector3 rot = tr->GetRotation();
-			Vector3 rot = tr->GetRotation();
-			Quaternion rotfi;
-			rot.x = mMousPosition.x;
-			rot.y = mMousPosition.y;
-			rotfi=Quaternion::LookRotation(rot,pos);
-			tr->SetRotation(rotfi);
-		*/
+		Matrix rotationz = Matrix::CreateRotationZ(angle); //z축을 기준으롤 한 회전행렬을 생성
+		Vector3 dirx = Vector3::TransformNormal(Vector3::UnitX, rotationz); //단위벡터에 곱해줌
+		Vector3 diry = Vector3::UnitZ.Cross(dirx);
+	
 
 		if (Input::GetKeyState(eKeyCode::D) == eKeyState::PRESSED)
 		{
-			pos = tr->GetPosition();
-			pos.x += 6.0f * Time::DeltaTime();
+			pos.x +=  6.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
 		}
 		if (Input::GetKeyState(eKeyCode::A) == eKeyState::PRESSED)
 		{
-			pos = tr->GetPosition();
-			pos.x -= 6.0f * Time::DeltaTime();
+			pos.x -=  6.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
 		}
 
 		if (Input::GetKeyState(eKeyCode::W) == eKeyState::PRESSED)
 		{
-			pos = tr->GetPosition();
 			pos.y += 6.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
 		}
 		if (Input::GetKeyState(eKeyCode::S) == eKeyState::PRESSED)
 		{
-			pos = tr->GetPosition();
-			pos.y -= 6.0f * Time::DeltaTime();
+			pos.y -=  6.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
 		}
 		Animator* animator = GetOwner()->GetComponent<Animator>();

@@ -22,6 +22,7 @@ namespace yu
 	private:
 		math::Vector2 mMousPosition;
 		math::Vector3 pos;
+		math::Vector3 forward;
 
 		Matrix mView;
 		Matrix mProjection;
