@@ -106,8 +106,12 @@ namespace yu
 			collider->SetSize(Vector2(0.18f, 0.18f));
 
 			std::shared_ptr <Texture> tex = Resources::Find<Texture>(L"PlayerWalkSprite");
+			std::shared_ptr <Texture> tex2= Resources::Find<Texture>(L"PlayerPunchSprite");
+
 			Animator* animator = obj->AddComponent<Animator>();
 			animator->Create(L"Idle", tex, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 8, 0.1f);
+			animator->Create(L"Punch", tex2, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
 			animator->Play(L"Idle", true);
 
 

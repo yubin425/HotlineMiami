@@ -22,9 +22,10 @@ namespace yu
 	{
 		Animator* animator = GetOwner()->GetComponent<Animator>();
 		animator->GetStartEvent(L"Idle") = std::bind(&PlayerScript::Start, this);
-		animator->GetCompleteEvent(L"Idle") = std::bind(&PlayerScript::Action, this);
-		animator->GetEndEvent(L"Idle") = std::bind(&PlayerScript::End, this);
-		animator->GetEvent(L"Idle", 1) = std::bind(&PlayerScript::End, this);
+		//animator->GetCompleteEvent(L"Idle") = std::bind(&PlayerScript::Action, this);
+		//animator->GetEndEvent(L"Idle") = std::bind(&PlayerScript::End, this);
+		animator->GetCompleteEvent(L"Punch") = std::bind(&PlayerScript::End, this);
+		//animator->GetEvent(L"Idle", 1) = std::bind(&PlayerScript::End, this);
 	}
 
 
@@ -79,9 +80,9 @@ namespace yu
 			tr->SetPosition(pos);
 		}
 		Animator* animator = GetOwner()->GetComponent<Animator>();
-		if (Input::GetKey(eKeyCode::N_1))
+		if (Input::GetKeyState(eKeyCode::LBTN)== eKeyState::DOWN)
 		{
-			animator->Play(L"Idle");
+			animator->Play(L"Punch",false);
 		}
 
 	}
@@ -113,6 +114,8 @@ namespace yu
 
 	void PlayerScript::End()
 	{
+		Animator* animator = GetOwner()->GetComponent<Animator>();
+		animator->Play(L"Idle");
 	}
 
 

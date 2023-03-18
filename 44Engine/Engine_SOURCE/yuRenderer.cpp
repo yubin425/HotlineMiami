@@ -397,6 +397,7 @@ namespace yu::renderer
 		Resources::Load<Texture>(L"Titleimage", L"Title.png");
 		Resources::Load<Texture>(L"Endingimage", L"Ending.png");
 		Resources::Load<Texture>(L"PlayerWalkSprite", L"sprPWalkUnarmed2_strip8.png");
+		Resources::Load<Texture>(L"PlayerPunchSprite", L"sprPAttackThrow_strip4.png");
 	}
 
 	void LoadMaterial()
