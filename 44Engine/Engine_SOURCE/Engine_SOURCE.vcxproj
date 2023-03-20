@@ -167,6 +167,7 @@
     <ClInclude Include="yuCollider.h" />
     <ClInclude Include="yuComponent.h" />
     <ClInclude Include="yuConstantBuffer.h" />
+    <ClInclude Include="yuCursorScript.h" />
     <ClInclude Include="yuEndingScene.h" />
     <ClInclude Include="yuEngine.h" />
     <ClInclude Include="yuEntity.h" />
@@ -214,6 +215,7 @@
     <ClCompile Include="yuCollider.cpp" />
     <ClCompile Include="yuComponent.cpp" />
     <ClCompile Include="yuConstantBuffer.cpp" />
+    <ClCompile Include="yuCursorScript.cpp" />
     <ClCompile Include="yuEndingScene.cpp" />
     <ClCompile Include="yuEntity.cpp" />
     <ClCompile Include="yuFadeScript.cpp" />

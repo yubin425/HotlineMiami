@@ -77,6 +77,7 @@ namespace yu
 			POINT mousePos = {};
 			GetCursorPos(&mousePos);
 			ScreenToClient(application.GetHwnd(), &mousePos);
+
 			mMousPosition.x = (2.0f * mousePos.x / application.GetWidth()) - 1.0f;
 			mMousPosition.y = 1.0f - (2.0f * mousePos.y / application.GetHeight());
 		}

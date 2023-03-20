@@ -22,6 +22,7 @@ namespace yu::enums
 		Player,
 
 		Fade,
+		Cursor,
 		UI,
 		End = 16,
 	};
@@ -73,6 +74,14 @@ namespace yu::enums
 		None,
 		SecondDimension,
 		ThirdDimension,
+		End,
+	};
+
+	enum class ePlayerStatus
+	{
+		Idle,
+		Walk,
+		Attack,
 		End,
 	};
 

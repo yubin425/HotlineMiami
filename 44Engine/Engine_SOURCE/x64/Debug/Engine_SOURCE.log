@@ -1,6 +1,2 @@
 ﻿  yuPlayerScript.cpp
-C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuMath.h(16,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
-C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuPlayerScript.cpp(45,37): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuPlayerScript.cpp(46,37): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Engine_SOURCE.vcxproj -> C:\Users\yubin\Desktop\Hotline miami\44Engine\x64\Debug\Lib\Engine_SOURCE.lib
+  Engine_SOURCE.vcxproj -> C:\Users\user\Desktop\HotlineMiami\44Engine\x64\Debug\Lib\Engine_SOURCE.lib

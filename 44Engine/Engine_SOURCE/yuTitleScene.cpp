@@ -17,6 +17,7 @@
 #include "yuCollisionManager.h"
 #include "yuFadeScript.h"
 #include "yuAnimator.h"
+#include "yuCursorScript.h"
 
 namespace yu
 {
@@ -107,10 +108,12 @@ namespace yu
 
 			std::shared_ptr <Texture> tex = Resources::Find<Texture>(L"PlayerWalkSprite");
 			std::shared_ptr <Texture> tex2= Resources::Find<Texture>(L"PlayerPunchSprite");
+			std::shared_ptr <Texture> tex3 = Resources::Find<Texture>(L"PlayerIdleSprite");
 
 			Animator* animator = obj->AddComponent<Animator>();
-			animator->Create(L"Idle", tex, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 8, 0.1f);
+			animator->Create(L"Idle", tex3, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 1, 0.1f);
 			animator->Create(L"Punch", tex2, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			animator->Create(L"Walk", tex, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 8, 0.1f);
 
 			animator->Play(L"Idle", true);
 
@@ -124,7 +127,25 @@ namespace yu
 			object::DontDestroyOnLoad(obj);
 		}
 
+		//cursor
+		{
+			GameObject* obj = object::Instantiate<GameObject>(eLayerType::Cursor);
+			obj->SetName(L"CURSOR");
+			Transform* tr = obj->GetComponent<Transform>();
+			tr->SetPosition(Vector3(2.0f, 0.0f, 5.0f));
+			tr->SetScale(Vector3(0.5f, 0.5f, 1.0f));
+			Collider2D* collider = obj->AddComponent<Collider2D>();
+			collider->SetType(eColliderType::Rect);
+			//collider->SetSize(Vector2(0.18f, 0.18f));
 
+			SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
+			std::shared_ptr<Material> mateiral = Resources::Find<Material>(L"CursorMaterial");
+			mr->SetMaterial(mateiral);
+			std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
+			mr->SetMesh(mesh);
+			obj->AddComponent<CursorScript>();
+			object::DontDestroyOnLoad(obj);
+		}
 
 		////SMILE RECT CHild
 		//GameObject* child = object::Instantiate<GameObject>(eLayerType::Player);

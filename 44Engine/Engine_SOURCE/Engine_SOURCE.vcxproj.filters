@@ -219,6 +219,9 @@
     <ClCompile Include="yuAnimator.cpp">
       <Filter>Component\Animator</Filter>
     </ClCompile>
+    <ClCompile Include="yuCursorScript.cpp">
+      <Filter>Component\Script</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonInclude.h">
@@ -358,6 +361,9 @@
     </ClInclude>
     <ClInclude Include="yuAnimator.h">
       <Filter>Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="yuCursorScript.h">
+      <Filter>Component\Script</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

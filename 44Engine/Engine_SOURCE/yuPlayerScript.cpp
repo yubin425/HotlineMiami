@@ -25,7 +25,9 @@ namespace yu
 		//animator->GetCompleteEvent(L"Idle") = std::bind(&PlayerScript::Action, this);
 		//animator->GetEndEvent(L"Idle") = std::bind(&PlayerScript::End, this);
 		animator->GetCompleteEvent(L"Punch") = std::bind(&PlayerScript::End, this);
+		//animator->GetCompleteEvent(L"Walk") = std::bind(&PlayerScript::End, this);
 		//animator->GetEvent(L"Idle", 1) = std::bind(&PlayerScript::End, this);
+		Status = ePlayerStatus::Idle;
 	}
 
 
@@ -42,8 +44,8 @@ namespace yu
 
 		mMousPosition.x = mMousPosition.x / mProjection._11 ;
 		mMousPosition.y = mMousPosition.y / mProjection._22;
-		mMousPosition.x = mMousPosition.x +1.1;
-		mMousPosition.y = mMousPosition.y + 0.8;
+		//mMousPosition.x = mMousPosition.x +1.1;
+		//mMousPosition.y = mMousPosition.y + 0.8;
 
 		Vector3 dirvec =  mMousPosition-pos;
 		dirvec.z = 0.f;
@@ -62,28 +64,42 @@ namespace yu
 		{
 			pos.x +=  6.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
+	
 		}
 		if (Input::GetKeyState(eKeyCode::A) == eKeyState::PRESSED)
 		{
 			pos.x -=  6.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
+		
 		}
 
 		if (Input::GetKeyState(eKeyCode::W) == eKeyState::PRESSED)
 		{
 			pos.y += 6.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
+			
 		}
 		if (Input::GetKeyState(eKeyCode::S) == eKeyState::PRESSED)
 		{
 			pos.y -=  6.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
+			//Status = ePlayerStatus::Walk;
 		}
+
 		Animator* animator = GetOwner()->GetComponent<Animator>();
 		if (Input::GetKeyState(eKeyCode::LBTN)== eKeyState::DOWN)
 		{
-			animator->Play(L"Punch",false);
+			animator->Play(L"Punch", false);
 		}
+
+		if (Status == ePlayerStatus::Attack)
+		{
+			//animator->Play(L"Punch", false);
+		}
+		//else if (Status == ePlayerStatus::Walk)
+		//{
+			//animator->Play(L"Walk", false);
+		//}
 
 	}
 
@@ -115,6 +131,7 @@ namespace yu
 	void PlayerScript::End()
 	{
 		Animator* animator = GetOwner()->GetComponent<Animator>();
+		//Status = ePlayerStatus::Idle;
 		animator->Play(L"Idle");
 	}
 

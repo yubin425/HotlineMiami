@@ -396,29 +396,44 @@ namespace yu::renderer
 		Resources::Load<Texture>(L"HPBarTexture", L"HPBar.png");
 		Resources::Load<Texture>(L"Titleimage", L"Title.png");
 		Resources::Load<Texture>(L"Endingimage", L"Ending.png");
+		Resources::Load<Texture>(L"Cursor", L"cursor.png");
 		Resources::Load<Texture>(L"PlayerWalkSprite", L"sprPWalkUnarmed2_strip8.png");
 		Resources::Load<Texture>(L"PlayerPunchSprite", L"sprPAttackThrow_strip4.png");
+		Resources::Load<Texture>(L"PlayerIdleSprite", L"idle.png");
 	}
 
 	void LoadMaterial()
 	{
 
 		// Default
-		std::shared_ptr <Texture> texture = Resources::Find<Texture>(L"SmileTexture");
+		{std::shared_ptr <Texture> texture = Resources::Find<Texture>(L"SmileTexture");
 		std::shared_ptr<Shader> shader = Resources::Find<Shader>(L"RectShader");
-		std::shared_ptr<Material> material = std::make_shared<Material>(); 
+		std::shared_ptr<Material> material = std::make_shared<Material>();
 		material->SetShader(shader);
 		material->SetTexture(texture);
 		Resources::Insert<Material>(L"RectMaterial", material);
+		}
 
 		// Sprite
-		std::shared_ptr <Texture> spriteTexture= Resources::Find<Texture>(L"DefaultSprite");
+		std::shared_ptr <Texture> spriteTexture = Resources::Find<Texture>(L"DefaultSprite");
 		std::shared_ptr<Shader> spriteShader = Resources::Find<Shader>(L"SpriteShader");
 		std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
 		spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
 		spriteMaterial->SetShader(spriteShader);
 		spriteMaterial->SetTexture(spriteTexture);
 		Resources::Insert<Material>(L"SpriteMaterial", spriteMaterial);
+		
+
+		// Cursor
+		
+		std::shared_ptr <Texture> cursorTexture = Resources::Find<Texture>(L"Cursor");
+		std::shared_ptr<Shader> cursorShader = Resources::Find<Shader>(L"SpriteShader");
+		std::shared_ptr<Material> cursorMaterial = std::make_shared<Material>();
+		cursorMaterial->SetRenderingMode(eRenderingMode::Transparent);
+		cursorMaterial->SetShader(cursorShader);
+		cursorMaterial->SetTexture(cursorTexture);
+		Resources::Insert<Material>(L"CursorMaterial", cursorMaterial);
+		
 
 		// Player
 		std::shared_ptr <Texture> playerTexture = Resources::Find<Texture>(L"PlayerWalkSprite");

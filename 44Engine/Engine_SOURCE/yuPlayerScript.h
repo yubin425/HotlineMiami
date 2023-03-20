@@ -27,6 +27,8 @@ namespace yu
 		Matrix mView;
 		Matrix mProjection;
 
+		enum::ePlayerStatus Status;
+
 		void Start();
 		void Action();
 		void End();
