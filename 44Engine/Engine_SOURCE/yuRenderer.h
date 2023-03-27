@@ -7,6 +7,8 @@
 #include "yuShader.h"
 #include "yuConstantBuffer.h"
 #include "yuCamera.h"
+#include "yuLight.h"
+#include "yuStructedBuffer.h"
 
 using namespace yu::math;
 using namespace yu::graphics;
@@ -59,6 +61,13 @@ namespace yu::renderer
 		UINT type;
 	};
 
+	//CBSLOT_NUMBEROFLIGHT
+	CBUFFER(LightCB, CBSLOT_NUMBEROFLIGHT)
+	{
+		UINT numberOfLight;
+	};
+
+
 	extern Vertex vertexes[4];
 	extern Camera* mainCamera;
 	extern ConstantBuffer* constantBuffers[];
@@ -69,13 +78,16 @@ namespace yu::renderer
 	
 	extern std::vector<Camera*> cameras[];
 	extern std::vector<DebugMesh> debugMeshes;
+	extern std::vector<LightAttribute> lights;
+	extern StructedBuffer* lightsBuffer;
 
 	void Initialize();
 	void Render();
 	void Release();
 
 	//Renderer
-
+	void PushLightAttribute(LightAttribute lightAttribute);
+	void BindLights();
 
 }
 

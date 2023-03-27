@@ -1,4 +1,4 @@
-
+#include "Light.hlsli"
 cbuffer Transform : register(b0)
 {
     row_major matrix world;
@@ -39,9 +39,16 @@ cbuffer Fade : register(b4)
     //bool fadein;
 }
 
+cbuffer NumberOfLight : register(b5)
+{
+    uint numberOfLight;
+}
+
 SamplerState pointSampler : register(s0);
 SamplerState linearSampler : register(s1);
 SamplerState anisotropicSampler : register(s2);
+
+StructuredBuffer<LightAttribute> lightAttributes : register(t13);
 
 Texture2D defaultTexture : register(t0);
 //Texture2D defaultTexture2 : register(t1);

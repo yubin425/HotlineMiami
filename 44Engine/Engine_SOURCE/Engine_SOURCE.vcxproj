@@ -179,6 +179,7 @@
     <ClInclude Include="yuGridScript.h" />
     <ClInclude Include="yuInput.h" />
     <ClInclude Include="yuLayer.h" />
+    <ClInclude Include="yuLight.h" />
     <ClInclude Include="yuMaterial.h" />
     <ClInclude Include="yuMath.h" />
     <ClInclude Include="yuMesh.h" />
@@ -197,6 +198,7 @@
     <ClInclude Include="yuScript.h" />
     <ClInclude Include="yuShader.h" />
     <ClInclude Include="yuSpriteRenderer.h" />
+    <ClInclude Include="yuStructedBuffer.h" />
     <ClInclude Include="yuTexture.h" />
     <ClInclude Include="yuTime.h" />
     <ClInclude Include="yuTitleScene.h" />
@@ -224,6 +226,7 @@
     <ClCompile Include="yuGridScript.cpp" />
     <ClCompile Include="yuInput.cpp" />
     <ClCompile Include="yuLayer.cpp" />
+    <ClCompile Include="yuLight.cpp" />
     <ClCompile Include="yuMaterial.cpp" />
     <ClCompile Include="yuMath.cpp" />
     <ClCompile Include="yuMesh.cpp" />
@@ -241,6 +244,7 @@
     <ClCompile Include="yuScript.cpp" />
     <ClCompile Include="yuShader.cpp" />
     <ClCompile Include="yuSpriteRenderer.cpp" />
+    <ClCompile Include="yuStructedBuffer.cpp" />
     <ClCompile Include="yuTexture.cpp" />
     <ClCompile Include="yuTime.cpp" />
     <ClCompile Include="yuTitleScene.cpp" />

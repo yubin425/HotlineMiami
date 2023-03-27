@@ -38,6 +38,7 @@ namespace yu::enums
 		MeshRenerer,
 		SpriteRenderer,
 		Animator,
+		Light,
 		UI,
 		//FadeOut,FadeIn
 		Script,
@@ -82,6 +83,14 @@ namespace yu::enums
 		Idle,
 		Walk,
 		Attack,
+		End,
+	};
+
+	enum class eLightType
+	{
+		Directional,
+		Point,
+		Spot,
 		End,
 	};
 

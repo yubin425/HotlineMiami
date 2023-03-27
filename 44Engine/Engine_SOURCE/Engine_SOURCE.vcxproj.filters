@@ -94,6 +94,9 @@
     <Filter Include="Component\Animator">
       <UniqueIdentifier>{5617f228-a6b1-4d89-8a60-2aea1ca48f8c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Component\Light">
+      <UniqueIdentifier>{be2592b5-d264-47be-9f81-64dcbe4cc458}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yuApplication.cpp">
@@ -222,6 +225,10 @@
     <ClCompile Include="yuCursorScript.cpp">
       <Filter>Component\Script</Filter>
     </ClCompile>
+    <ClCompile Include="yuLight.cpp">
+      <Filter>Component\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="yuStructedBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonInclude.h">
@@ -365,6 +372,10 @@
     <ClInclude Include="yuCursorScript.h">
       <Filter>Component\Script</Filter>
     </ClInclude>
+    <ClInclude Include="yuLight.h">
+      <Filter>Component\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="yuStructedBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="yuMath.inl">

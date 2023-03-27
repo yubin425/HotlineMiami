@@ -17,7 +17,9 @@
 #define CBSLOT_GRID 2
 #define CBSLOT_ANIMATION 3
 #define CBSLOT_FADE 4
+#define CBSLOT_NUMBEROFLIGHT 5
 
+using namespace yu::math;
 
 namespace yu::graphics
 {
@@ -105,6 +107,7 @@ namespace yu::graphics
 		Grid,
 		Animation,
 		Fade,
+		Light,
 		End,
 	};
 
@@ -116,6 +119,13 @@ namespace yu::graphics
 		Vector3,
 		Vector4,
 		Matrix,
+	};
+
+
+	enum class eSRVType
+	{
+		None,
+		End,
 	};
 
 	struct DebugMesh
@@ -130,5 +140,18 @@ namespace yu::graphics
 		float time;
 	};
 
+	struct LightAttribute
+	{
+		Vector4 diffuse;
+		Vector4 specular;
+		Vector4 ambient;
 
+		Vector4 position;
+		Vector4 direction;
+
+		enums::eLightType type;
+		float radius;
+		float angle;
+		int padding;
+	};
 }
