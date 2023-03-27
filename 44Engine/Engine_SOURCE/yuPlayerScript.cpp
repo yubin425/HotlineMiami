@@ -33,6 +33,7 @@ namespace yu
 
 	void PlayerScript::Update()
 	{
+
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		pos = tr->GetPosition(); 
 		forward = tr->Foward();
@@ -58,44 +59,67 @@ namespace yu
 		Matrix rotationz = Matrix::CreateRotationZ(angle); //z축을 기준으롤 한 회전행렬을 생성
 		Vector3 dirx = Vector3::TransformNormal(Vector3::UnitX, rotationz); //단위벡터에 곱해줌
 		Vector3 diry = Vector3::UnitZ.Cross(dirx);
-	
+
+		Animator* animator = GetOwner()->GetComponent<Animator>();
+
+		if (Status == ePlayerStatus::Walk)
+		{
+			//animator->Play(L"Walk", true);
+			Status = ePlayerStatus::Idle;
+			animator->Play(L"Idle");
+		}
 
 		if (Input::GetKeyState(eKeyCode::D) == eKeyState::PRESSED)
 		{
 			pos.x +=  6.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
+			if (Status != ePlayerStatus::Walk)
+			{
+				animator->Play(L"Walk", true);
+				Status = ePlayerStatus::Walk;
+			}
 	
 		}
 		if (Input::GetKeyState(eKeyCode::A) == eKeyState::PRESSED)
 		{
 			pos.x -=  6.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
-		
+			if (Status != ePlayerStatus::Walk)
+			{
+				animator->Play(L"Walk", true);
+				Status = ePlayerStatus::Walk;
+			}
 		}
 
 		if (Input::GetKeyState(eKeyCode::W) == eKeyState::PRESSED)
 		{
 			pos.y += 6.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
-			
+			if (Status != ePlayerStatus::Walk)
+			{
+				animator->Play(L"Walk", true);
+				Status = ePlayerStatus::Walk;
+			}
 		}
 		if (Input::GetKeyState(eKeyCode::S) == eKeyState::PRESSED)
 		{
 			pos.y -=  6.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
-			//Status = ePlayerStatus::Walk;
+			if (Status != ePlayerStatus::Walk)
+			{
+				animator->Play(L"Walk", true);
+				Status = ePlayerStatus::Walk;
+			}
 		}
 
-		Animator* animator = GetOwner()->GetComponent<Animator>();
+		
 		if (Input::GetKeyState(eKeyCode::LBTN)== eKeyState::DOWN)
 		{
+			Status = ePlayerStatus::Attack;
 			animator->Play(L"Punch", false);
 		}
 
-		if (Status == ePlayerStatus::Attack)
-		{
-			//animator->Play(L"Punch", false);
-		}
+		
 		//else if (Status == ePlayerStatus::Walk)
 		//{
 			//animator->Play(L"Walk", false);
@@ -131,7 +155,7 @@ namespace yu
 	void PlayerScript::End()
 	{
 		Animator* animator = GetOwner()->GetComponent<Animator>();
-		//Status = ePlayerStatus::Idle;
+		Status = ePlayerStatus::Idle;
 		animator->Play(L"Idle");
 	}
 
