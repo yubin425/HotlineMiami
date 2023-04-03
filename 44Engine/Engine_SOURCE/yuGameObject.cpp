@@ -35,21 +35,7 @@ namespace yu
 
 	void GameObject::Initalize()
 	{
-		for (Component* comp : mComponents)
-		{
-			if (comp == nullptr)
-				continue;
 
-			comp->Initalize();
-		}
-
-		for (Component* script : mScripts)
-		{
-			if (script == nullptr)
-				continue;
-
-			script->Initalize();
-		}
 	}
 
 	void GameObject::Update()

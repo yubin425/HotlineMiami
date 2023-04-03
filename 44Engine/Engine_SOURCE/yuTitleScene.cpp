@@ -18,6 +18,9 @@
 #include "yuFadeScript.h"
 #include "yuAnimator.h"
 #include "yuCursorScript.h"
+#include "yuLight.h"
+#include "yuPaintShader.h"
+#include "yuParticleSystem.h"
 
 namespace yu
 {
@@ -31,10 +34,36 @@ namespace yu
 	void TitleScene::Initalize()
 	{
 
+		//paint shader
+		std::shared_ptr<PaintShader> paintShader = Resources::Find<PaintShader>(L"PaintShader");
+		//L"SmileTexture"
+		std::shared_ptr<Texture> paintTex = Resources::Find<Texture>(L"PaintTexture");
+		paintShader->SetTarget(paintTex);
+		paintShader->OnExcute();
+
+
+		{
+			GameObject* directionalLight = object::Instantiate<GameObject>(eLayerType::Player);
+			directionalLight->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, -100.0f));
+			Light* lightComp = directionalLight->AddComponent<Light>();
+			lightComp->SetType(eLightType::Directional);
+			lightComp->SetDiffuse(Vector4(1.0f, 1.0f, 1.0f, 1.0f));
+		}
+
+		{
+			//GameObject* directionalLight = object::Instantiate<GameObject>(eLayerType::Player);
+			//directionalLight->GetComponent<Transform>()->SetPosition(Vector3(3.0f, 0.0f, 0.0f));
+			//Light* lightComp = directionalLight->AddComponent<Light>();
+			//lightComp->SetType(eLightType::Point);
+			//lightComp->SetRadius(10.0f);
+			//lightComp->SetDiffuse(Vector4(1.0f, 1.0f, 1.0f, 1.0f));
+		}
+
 		// Main Camera Game Object
 		GameObject* cameraObj = object::Instantiate<GameObject>(eLayerType::Camera);
 		Camera* cameraComp = cameraObj->AddComponent<Camera>();
 		cameraComp->SetProjectionType(Camera::eProjectionType::Orthographic);
+
 		//cameraComp->RegisterCameraInRenderer();
 		cameraComp->TurnLayerMask(eLayerType::UI, false);
 		cameraObj->AddComponent<CameraScript>();
@@ -73,7 +102,7 @@ namespace yu
 
 		std::shared_ptr<Material> spriteMaterial = Resources::Find<Material>(L"SpriteMaterial");
 		std::shared_ptr <Texture> TitleST = Resources::Find<Texture>(L"Titleimage");
-		spriteMaterial->SetTexture(TitleST);
+		spriteMaterial->SetTexture(eTextureSlot::T0, TitleST);
 
 		Titlesr->SetMaterial(spriteMaterial);
 		Titlesr->SetMesh(Titlemesh);
@@ -100,6 +129,8 @@ namespace yu
 			obj->SetName(L"PLAYER");
 			Transform* tr = obj->GetComponent<Transform>();
 			tr->SetPosition(Vector3(2.0f, 0.0f, 5.0f));
+			//이미지 회전하는 방법
+			//tr->SetRotation(Vector3(0.0f, 180.0f, 0.0f));
 			//tr->SetRotation(Vector3(0.0f, 0.0f, XM_PIDIV2 / 2.0f));
 			tr->SetScale(Vector3(5.0f, 5.0f, 1.0f));
 			Collider2D* collider = obj->AddComponent<Collider2D>();
@@ -160,7 +191,15 @@ namespace yu
 		//childMr->SetMaterial(childmateiral);
 		//childMr->SetMesh(mesh);
 
-		
+		//Particle
+		{
+			Player* obj = object::Instantiate<Player>(eLayerType::Particle);
+			obj->SetName(L"PARTICLE");
+			Transform* tr = obj->GetComponent<Transform>();
+			tr->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+			obj->AddComponent<ParticleSystem>();
+		}
+
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Player, true);
 
@@ -172,7 +211,7 @@ namespace yu
 		{
 			std::shared_ptr<Material> spriteMaterial = Resources::Find<Material>(L"SpriteMaterial");
 			std::shared_ptr <Texture> ST = Resources::Find<Texture>(L"Endingimage");
-			spriteMaterial->SetTexture(ST);
+			spriteMaterial->SetTexture(eTextureSlot::T0, ST);
 			SceneManager::LoadScene(eSceneType::Play);
 		}
 

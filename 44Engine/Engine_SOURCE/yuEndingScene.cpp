@@ -61,7 +61,7 @@ namespace yu
 		{
 			std::shared_ptr<Material> spriteMaterial = Resources::Find<Material>(L"SpriteMaterial");
 			std::shared_ptr <Texture> TitleST = Resources::Find<Texture>(L"Titleimage");
-			spriteMaterial->SetTexture(TitleST);
+			spriteMaterial->SetTexture(eTextureSlot::T0,TitleST);
 			SceneManager::LoadScene(eSceneType::Title);
 		}
 

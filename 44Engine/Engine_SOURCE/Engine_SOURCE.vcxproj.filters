@@ -229,6 +229,16 @@
       <Filter>Component\Light</Filter>
     </ClCompile>
     <ClCompile Include="yuStructedBuffer.cpp" />
+    <ClCompile Include="yuComputeShader.cpp">
+      <Filter>Resource\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="yuPaintShader.cpp">
+      <Filter>Resource\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="yuParticleSystem.cpp" />
+    <ClCompile Include="yuParticleShader.cpp">
+      <Filter>Resource\Shader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonInclude.h">
@@ -376,6 +386,16 @@
       <Filter>Component\Light</Filter>
     </ClInclude>
     <ClInclude Include="yuStructedBuffer.h" />
+    <ClInclude Include="yuComputeShader.h">
+      <Filter>Resource\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="yuPaintShader.h">
+      <Filter>Resource\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="yuParticleSystem.h" />
+    <ClInclude Include="yuParticleShader.h">
+      <Filter>Resource\Shader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="yuMath.inl">

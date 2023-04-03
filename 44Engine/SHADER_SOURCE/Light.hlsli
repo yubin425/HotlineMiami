@@ -1,5 +1,3 @@
-
-
 struct LightColor
 {
     float4 diffuse;
@@ -20,3 +18,5 @@ struct LightAttribute
 
     //
 };
+
+

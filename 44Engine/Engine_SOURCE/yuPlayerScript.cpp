@@ -56,9 +56,9 @@ namespace yu
 		
 		tr->SetRotation(Vector3(0.f,0.f,angle));
 
-		Matrix rotationz = Matrix::CreateRotationZ(angle); //z축을 기준으롤 한 회전행렬을 생성
-		Vector3 dirx = Vector3::TransformNormal(Vector3::UnitX, rotationz); //단위벡터에 곱해줌
-		Vector3 diry = Vector3::UnitZ.Cross(dirx);
+		//Matrix rotationz = Matrix::CreateRotationZ(angle); //z축을 기준으롤 한 회전행렬을 생성
+		//Vector3 dirx = Vector3::TransformNormal(Vector3::UnitX, rotationz); //단위벡터에 곱해줌
+		//Vector3 diry = Vector3::UnitZ.Cross(dirx);
 
 		Animator* animator = GetOwner()->GetComponent<Animator>();
 

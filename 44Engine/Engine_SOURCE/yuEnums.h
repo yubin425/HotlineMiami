@@ -23,6 +23,7 @@ namespace yu::enums
 
 		Fade,
 		Cursor,
+		Particle,
 		UI,
 		End = 16,
 	};
@@ -38,6 +39,7 @@ namespace yu::enums
 		MeshRenerer,
 		SpriteRenderer,
 		Animator,
+		ParticleSystem,
 		Light,
 		UI,
 		//FadeOut,FadeIn

@@ -166,6 +166,7 @@
     <ClInclude Include="yuCameraScript.h" />
     <ClInclude Include="yuCollider.h" />
     <ClInclude Include="yuComponent.h" />
+    <ClInclude Include="yuComputeShader.h" />
     <ClInclude Include="yuConstantBuffer.h" />
     <ClInclude Include="yuCursorScript.h" />
     <ClInclude Include="yuEndingScene.h" />
@@ -186,6 +187,9 @@
     <ClInclude Include="yuMeshRenderer.h" />
     <ClInclude Include="yuMonster.h" />
     <ClInclude Include="yuObject.h" />
+    <ClInclude Include="yuPaintShader.h" />
+    <ClInclude Include="yuParticleShader.h" />
+    <ClInclude Include="yuParticleSystem.h" />
     <ClInclude Include="yuPlayer.h" />
     <ClInclude Include="yuPlayerScript.h" />
     <ClInclude Include="yuPlayScene.h" />
@@ -216,6 +220,7 @@
     <ClCompile Include="yuCameraScript.cpp" />
     <ClCompile Include="yuCollider.cpp" />
     <ClCompile Include="yuComponent.cpp" />
+    <ClCompile Include="yuComputeShader.cpp" />
     <ClCompile Include="yuConstantBuffer.cpp" />
     <ClCompile Include="yuCursorScript.cpp" />
     <ClCompile Include="yuEndingScene.cpp" />
@@ -232,6 +237,9 @@
     <ClCompile Include="yuMesh.cpp" />
     <ClCompile Include="yuMeshRenderer.cpp" />
     <ClCompile Include="yuMonster.cpp" />
+    <ClCompile Include="yuPaintShader.cpp" />
+    <ClCompile Include="yuParticleShader.cpp" />
+    <ClCompile Include="yuParticleSystem.cpp" />
     <ClCompile Include="yuPlayer.cpp" />
     <ClCompile Include="yuPlayerScript.cpp" />
     <ClCompile Include="yuPlayScene.cpp" />

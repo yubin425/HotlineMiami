@@ -43,9 +43,9 @@ namespace yu
         if (fadein) { data.cumultime = CumulTime; }
         else { data.cumultime = 1.0f - CumulTime; }
 
-        cb->Bind(&data);
-        cb->SetPipline(eShaderStage::VS);
-        cb->SetPipline(eShaderStage::PS);
+        cb->SetData(&data);
+        cb->Bind(eShaderStage::VS);
+        cb->Bind(eShaderStage::PS);
     }
 
     void FadeScript::FixedUpdate()

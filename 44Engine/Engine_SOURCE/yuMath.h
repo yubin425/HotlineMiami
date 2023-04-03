@@ -1,5 +1,6 @@
 #pragma once
 #include "yuEngine.h"
+#include <math.h>
 
 
 

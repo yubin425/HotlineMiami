@@ -18,6 +18,7 @@
 #define CBSLOT_ANIMATION 3
 #define CBSLOT_FADE 4
 #define CBSLOT_NUMBEROFLIGHT 5
+#define CBSLOT_PARTICLESYSTEM 5
 
 using namespace yu::math;
 
@@ -108,6 +109,7 @@ namespace yu::graphics
 		Animation,
 		Fade,
 		Light,
+		ParticleSystem,
 		End,
 	};
 
@@ -124,7 +126,28 @@ namespace yu::graphics
 
 	enum class eSRVType
 	{
-		None,
+		SRV,
+		UAV,
+		End,
+	};
+
+	enum class eTextureSlot
+	{
+		T0,
+		T1,
+		T2,
+		T3,
+		T4,
+		T5,
+		T6,
+		T7,
+
+		CubeT8,
+		CubeT9,
+
+		Array2DT10,
+		Array2DT11,
+
 		End,
 	};
 
@@ -153,5 +176,21 @@ namespace yu::graphics
 		float radius;
 		float angle;
 		int padding;
+	};
+
+	struct Particle
+	{
+		Vector4 position;
+		Vector4 direction;
+
+		float lifeTime;
+		float time;
+		float speed;
+		UINT active;
+	};
+
+	struct ParticleShared
+	{
+		UINT activeCount;
 	};
 }
