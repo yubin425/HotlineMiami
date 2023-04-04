@@ -33,12 +33,12 @@ float4 main(VSOut In) : SV_Target
             || UV.y > leftTop.y + spriteSize.y)
             discard;
         //UV.x = -UV.x;
-        color = atlasTexture.Sample(anisotropicSampler, UV);
+        color = atlasTexture.Sample(pointSampler, UV);
     }
     else
     {
         //UV.x = -UV.x;
-        color = defaultTexture.Sample(anisotropicSampler, In.UV);
+        color = defaultTexture.Sample(pointSampler, In.UV);
     }
 
     LightColor lightColor = (LightColor)0.0f;

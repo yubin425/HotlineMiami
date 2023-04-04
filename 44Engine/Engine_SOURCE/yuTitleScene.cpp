@@ -124,7 +124,7 @@ namespace yu
 		//hpsr->SetMesh(hpmesh);
 		//hpsr->SetMaterial(hpspriteMaterial);
 		
-		//PLAYER RECT
+		/*//PLAYER RECT
 		{
 			Player* obj = object::Instantiate<Player>(eLayerType::Player);
 			obj->SetName(L"PLAYER");
@@ -157,7 +157,7 @@ namespace yu
 			mr->SetMesh(mesh);
 		    obj->AddComponent<PlayerScript>();
 			object::DontDestroyOnLoad(obj);
-		}
+		}*/
 
 		//cursor
 		{

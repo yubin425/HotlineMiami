@@ -1,3 +1,5 @@
 ﻿  yuPlayScene.cpp
 C:\Users\user\Desktop\HotlineMiami\44Engine\Engine_SOURCE\yuPlayScene.cpp(107,16): warning C4353: 비표준 확장을 사용했습니다. 함수 식으로 상수 0을 사용했습니다.  '__noop' 내장 함수를 대신 사용하십시오.
+  yuTitleScene.cpp
+  코드를 생성하고 있습니다...
   Engine_SOURCE.vcxproj -> C:\Users\user\Desktop\HotlineMiami\44Engine\x64\Debug\Lib\Engine_SOURCE.lib
