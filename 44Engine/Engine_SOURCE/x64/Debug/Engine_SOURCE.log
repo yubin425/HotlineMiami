@@ -1,31 +1,3 @@
-﻿  yuAnimation.cpp
-C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuMath.h(17,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
-C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuAnimation.cpp(38,37): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  yuLight.cpp
-C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuMath.h(17,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
-  yuMaterial.cpp
-C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuMath.h(17,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
-C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuMaterial.cpp(60,64): warning C4267: '인수': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuMaterial.cpp(61,64): warning C4267: '인수': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuMaterial.cpp(62,64): warning C4267: '인수': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuMaterial.cpp(63,64): warning C4267: '인수': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuMaterial.cpp(64,64): warning C4267: '인수': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuMaterial.cpp(65,64): warning C4267: '인수': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  yuParticleSystem.cpp
-C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuMath.h(17,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
-  yuPlayScene.cpp
-C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuMath.h(17,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
-  yuTime.cpp
-C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuMath.h(17,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
-C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuTime.cpp(49,46): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  yuTransform.cpp
-C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuMath.h(17,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
-  코드를 생성하고 있습니다...
-  Engine_SOURCE.vcxproj -> C:\Users\yubin\Desktop\Hotline miami\44Engine\x64\Debug\Lib\Engine_SOURCE.lib
+﻿  yuPlayScene.cpp
+C:\Users\user\Desktop\HotlineMiami\44Engine\Engine_SOURCE\yuPlayScene.cpp(107,16): warning C4353: 비표준 확장을 사용했습니다. 함수 식으로 상수 0을 사용했습니다.  '__noop' 내장 함수를 대신 사용하십시오.
+  Engine_SOURCE.vcxproj -> C:\Users\user\Desktop\HotlineMiami\44Engine\x64\Debug\Lib\Engine_SOURCE.lib

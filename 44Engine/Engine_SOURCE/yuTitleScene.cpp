@@ -48,6 +48,7 @@ namespace yu
 			Light* lightComp = directionalLight->AddComponent<Light>();
 			lightComp->SetType(eLightType::Directional);
 			lightComp->SetDiffuse(Vector4(1.0f, 1.0f, 1.0f, 1.0f));
+			object::DontDestroyOnLoad(directionalLight);
 		}
 
 		{
@@ -154,7 +155,7 @@ namespace yu
 			mr->SetMaterial(mateiral);
 			std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
 			mr->SetMesh(mesh);
-		   obj->AddComponent<PlayerScript>();
+		    obj->AddComponent<PlayerScript>();
 			object::DontDestroyOnLoad(obj);
 		}
 
@@ -227,8 +228,26 @@ namespace yu
 	}
 	void TitleScene::OnEnter()
 	{
+		GameObject* cameraObj = object::Instantiate<GameObject>(eLayerType::Camera, this);
+		Camera* cameraComp = cameraObj->AddComponent<Camera>();
+		cameraComp->SetProjectionType(Camera::eProjectionType::Orthographic);
+		//cameraComp->RegisterCameraInRenderer();
+		cameraComp->TurnLayerMask(eLayerType::UI, false);
+		cameraObj->AddComponent<CameraScript>();
+		mainCamera = cameraComp;
 	}
 	void TitleScene::OnExit()
 	{
+		
+			std::vector<GameObject*> gameObjs
+				= GetGameObjects(eLayerType::Camera);
+
+			for (GameObject* obj : gameObjs)
+			{
+				obj->Death();
+			}
+
+
+
 	}
 }

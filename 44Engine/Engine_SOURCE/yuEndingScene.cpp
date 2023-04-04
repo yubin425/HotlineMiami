@@ -26,14 +26,6 @@ namespace yu
 
 	void EndingScene::Initalize()
 	{
-		GameObject* cameraObj = object::Instantiate<GameObject>(eLayerType::Camera, this);
-		Camera* cameraComp = cameraObj->AddComponent<Camera>();
-		cameraComp->SetProjectionType(Camera::eProjectionType::Orthographic);
-		//cameraComp->RegisterCameraInRenderer();
-		cameraComp->TurnLayerMask(eLayerType::UI, false);
-		cameraObj->AddComponent<CameraScript>();
-		//mainCamera = cameraComp;
-
 
 		// Ending image
 		/*GameObject* EndingSprite = object::Instantiate<GameObject>(eLayerType::Background);
@@ -80,12 +72,26 @@ namespace yu
 
 	void EndingScene::OnEnter()
 	{
-
+		GameObject* cameraObj = object::Instantiate<GameObject>(eLayerType::Camera, this);
+		Camera* cameraComp = cameraObj->AddComponent<Camera>();
+		cameraComp->SetProjectionType(Camera::eProjectionType::Orthographic);
+		//cameraComp->RegisterCameraInRenderer();
+		cameraComp->TurnLayerMask(eLayerType::UI, false);
+		cameraObj->AddComponent<CameraScript>();
+		mainCamera = cameraComp;
 	}
 
 	void EndingScene::OnExit()
 	{
 
+		//camera 겹치지 않도록 destroy
+		std::vector<GameObject*> gameObjs
+			= GetGameObjects(eLayerType::Camera);
+
+		for (GameObject* obj : gameObjs)
+		{
+			obj->Death();
+		}
 	}
 
 }

@@ -84,6 +84,7 @@ namespace yu::enums
 	{
 		Idle,
 		Walk,
+		Walking,
 		Attack,
 		End,
 	};

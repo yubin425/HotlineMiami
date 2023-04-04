@@ -62,20 +62,13 @@ namespace yu
 
 		Animator* animator = GetOwner()->GetComponent<Animator>();
 
-		if (Status == ePlayerStatus::Walk)
-		{
-			//animator->Play(L"Walk", true);
-			Status = ePlayerStatus::Idle;
-			animator->Play(L"Idle");
-		}
-
 		if (Input::GetKeyState(eKeyCode::D) == eKeyState::PRESSED)
 		{
 			pos.x +=  6.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
-			if (Status != ePlayerStatus::Walk)
+
+			if (Status != ePlayerStatus::Walk && Status != ePlayerStatus::Walking)
 			{
-				animator->Play(L"Walk", true);
 				Status = ePlayerStatus::Walk;
 			}
 	
@@ -84,9 +77,8 @@ namespace yu
 		{
 			pos.x -=  6.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
-			if (Status != ePlayerStatus::Walk)
+			if (Status != ePlayerStatus::Walk && Status != ePlayerStatus::Walking)
 			{
-				animator->Play(L"Walk", true);
 				Status = ePlayerStatus::Walk;
 			}
 		}
@@ -95,9 +87,8 @@ namespace yu
 		{
 			pos.y += 6.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
-			if (Status != ePlayerStatus::Walk)
+			if (Status != ePlayerStatus::Walk && Status != ePlayerStatus::Walking)
 			{
-				animator->Play(L"Walk", true);
 				Status = ePlayerStatus::Walk;
 			}
 		}
@@ -105,25 +96,32 @@ namespace yu
 		{
 			pos.y -=  6.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
-			if (Status != ePlayerStatus::Walk)
+			if (Status != ePlayerStatus::Walk && Status != ePlayerStatus::Walking)
 			{
-				animator->Play(L"Walk", true);
 				Status = ePlayerStatus::Walk;
 			}
 		}
 
-		
+
 		if (Input::GetKeyState(eKeyCode::LBTN)== eKeyState::DOWN)
 		{
 			Status = ePlayerStatus::Attack;
 			animator->Play(L"Punch", false);
+		}	
+		else if (Status == ePlayerStatus::Walk)
+		{
+			Status = ePlayerStatus::Walking;
+			animator->Play(L"Walk", true);
+		}
+		else if (Status != ePlayerStatus::Attack&&Postpos == pos)
+		{
+			Status = ePlayerStatus::Idle;
+			animator->Play(L"Idle", true);
 		}
 
-		
-		//else if (Status == ePlayerStatus::Walk)
-		//{
-			//animator->Play(L"Walk", false);
-		//}
+
+
+		Postpos = pos; 
 
 	}
 
