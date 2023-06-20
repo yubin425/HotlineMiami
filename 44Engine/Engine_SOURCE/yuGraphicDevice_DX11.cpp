@@ -59,12 +59,12 @@ namespace yu::graphics
 			return;
 
 		mRenderTargetTexture = std::make_shared<Texture>();
-		//Resources::Insert<Texture>(L"RenderTarget", mRenderTargetTexture);
 		Microsoft::WRL::ComPtr<ID3D11Texture2D> renderTarget;
 		// Get rendertarget for swapchain
 		hr = mSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)renderTarget.GetAddressOf());
 		
 		mRenderTargetTexture->Create(renderTarget);
+		Resources::Insert<Texture>(L"RenderTargetTexture", mRenderTargetTexture);
 		
 
 

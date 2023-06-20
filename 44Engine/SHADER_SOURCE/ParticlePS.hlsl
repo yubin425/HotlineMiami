@@ -17,5 +17,12 @@ float4 main(GSOutput In) : SV_TARGET
 
     outColor = defaultTexture.Sample(anisotropicSampler, In.UV);
 
+    outColor *= startColor;
+
+    //if (0.0f < NoiseTime)
+//{
+//    outColor.a -= NoiseTexture.Sample(anisotropicSampler, In.UV).x * 0.25f * NoiseTime;
+//}
+
     return outColor;
 }

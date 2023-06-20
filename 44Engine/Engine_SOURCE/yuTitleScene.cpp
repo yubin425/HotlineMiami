@@ -96,7 +96,7 @@ namespace yu
 		GameObject* TitleSprite = object::Instantiate<GameObject>(eLayerType::Background);
 		TitleSprite->SetName(L"TITLE");
 		Transform* spriteTr = TitleSprite->GetComponent<Transform>();
-		spriteTr->SetPosition(Vector3(1.0f, 1.0f, 10.0f));
+		spriteTr->SetPosition(Vector3(1.0f, 1.0f, 100.0f));
 		spriteTr->SetScale(Vector3(17.0f, 10.0f, 1.f));
 		SpriteRenderer* Titlesr = TitleSprite->AddComponent<SpriteRenderer>();
 		std::shared_ptr<Mesh> Titlemesh = Resources::Find<Mesh>(L"RectMesh");

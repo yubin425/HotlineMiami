@@ -131,6 +131,12 @@ namespace yu
 
 	void PlayerScript::OnCollisionEnter(Collider2D* collider)
 	{
+		if (collider->GetName() == L"Monster") 
+		{
+
+		}
+
+
 	}
 
 	void PlayerScript::OnCollisionStay(Collider2D* collider)

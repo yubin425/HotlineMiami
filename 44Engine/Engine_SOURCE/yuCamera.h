@@ -44,6 +44,7 @@ namespace yu
 		void renderOpaque();
 		void renderCutout();
 		void renderTransparent();
+		void renderPostProcess();
 		void pushGameObjectToRenderingModes(GameObject* gameObj);
 
 	private:
@@ -64,5 +65,6 @@ namespace yu
 		std::vector<GameObject*> mOpaqueGameObjects;
 		std::vector<GameObject*> mCutoutGameObjects;
 		std::vector<GameObject*> mTransparentGameObjects;
+		std::vector<GameObject*> mPostProcessGameObjects;
 	};
 }

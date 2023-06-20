@@ -24,6 +24,7 @@ namespace yu::enums
 		Fade,
 		Cursor,
 		Particle,
+		PostProcess,
 		UI,
 		End = 16,
 	};

@@ -115,11 +115,12 @@ namespace yu
 		cameraObj->AddComponent<CameraScript>();
 		mainCamera = cameraComp;
 
+		Transform* tr;
 		//PLAYER RECT
 		{
 			Player* obj = object::Instantiate<Player>(eLayerType::Player);
 			obj->SetName(L"PLAYER");
-			Transform* tr = obj->GetComponent<Transform>();
+			tr = obj->GetComponent<Transform>();
 			tr->SetPosition(Vector3(2.0f, 0.0f, 5.0f));
 			//이미지 회전하는 방법
 			//tr->SetRotation(Vector3(0.0f, 180.0f, 0.0f));
@@ -148,6 +149,25 @@ namespace yu
 			mr->SetMesh(mesh);
 			obj->AddComponent<PlayerScript>();
 		}
+
+		//post process object
+		/* {
+			GameObject* obj = object::Instantiate<GameObject>(eLayerType::PostProcess);
+			obj->SetName(L"PostProcessGameObject");
+			tr = obj->GetComponent<Transform>();
+			tr->SetPosition(Vector3(0.0f, 0.0f, 2.0f));
+			tr->SetScale(Vector3(5.0f, 5.0f, 1.0f));
+
+			Collider2D* collider = obj->AddComponent<Collider2D>();
+			collider->SetType(eColliderType::Rect);
+			//collider->SetSize(Vector2(1.0f, 0.5f));
+
+			SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
+			std::shared_ptr<Material> mateiral = Resources::Find<Material>(L"PostProcessMaterial");
+			mr->SetMaterial(mateiral);
+			std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
+			mr->SetMesh(mesh);
+		}*/
 
 
 	}

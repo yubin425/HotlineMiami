@@ -18,7 +18,9 @@
 #define CBSLOT_ANIMATION 3
 #define CBSLOT_FADE 4
 #define CBSLOT_NUMBEROFLIGHT 5
-#define CBSLOT_PARTICLESYSTEM 5
+#define CBSLOT_PARTICLESYSTEM 6
+#define CBSLOT_NOISE		7
+
 
 using namespace yu::math;
 
@@ -39,6 +41,7 @@ namespace yu::graphics
 		GS,
 		PS,
 		CS,
+		ALL,
 		Count,
 	};
 
@@ -81,6 +84,7 @@ namespace yu::graphics
 		Opaque,
 		CutOut,
 		Transparent,
+		PostProcess,
 		End,
 	};
 
@@ -110,6 +114,7 @@ namespace yu::graphics
 		Fade,
 		Light,
 		ParticleSystem,
+		Noise,
 		End,
 	};
 

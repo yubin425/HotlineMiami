@@ -14,6 +14,7 @@ namespace yu
 	}
 	void Monster::Update()
 	{
+		GameObject::Update();
 	}
 	void Monster::FixedUpdate()
 	{

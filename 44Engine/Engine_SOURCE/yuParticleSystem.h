@@ -4,6 +4,13 @@
 
 namespace yu
 {
+	enum class eSimulationSpace
+	{
+		Local,
+		World,
+	};
+
+
 	class ParticleSystem : public BaseRenderer
 	{
 	public:
@@ -21,14 +28,19 @@ namespace yu
 		class StructedBuffer* mSharedBuffer;
 
 		std::shared_ptr<graphics::ParticleShader> mCS;
+		renderer::ParticleSystemCB mCBData;
 
-		UINT mCount;
 		Vector4 mStartSize;
-		Vector4 mEndSize;
 		Vector4 mStartColor;
-		Vector4 mEndColor;
+
+		eSimulationSpace mSimulationSpace;
+		UINT mMaxParticles;
 		float mStartLifeTime;
 		float mFrequency;
+		float mRadius;
+
+		float mStartSpeed;
 		float mTime;
+		float mElapsedTime; //누적시간
 	};
 }

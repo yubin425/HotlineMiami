@@ -20,6 +20,7 @@ namespace yu
 
 	void CursorScript::Initalize()
 	{
+		ShowCursor(false);
 	
 	}
 

@@ -15,6 +15,7 @@ namespace yu
 		virtual void Render();
 
 	private:
+		int hp;
 		//GameObject* head;
 		//GameObject* body;
 	};

@@ -18,7 +18,7 @@ namespace yu
 
 	Camera::Camera()
 		: Component(eComponentType::Camera)
-		, mType(eProjectionType::Perspective)
+		, mType(eProjectionType::Orthographic)
 		, mAspectRatio(1.0f)
 		, mNear(1.0f)
 		, mFar(1000.0f)
@@ -60,6 +60,7 @@ namespace yu
 		renderOpaque();
 		renderCutout();
 		renderTransparent();
+		renderPostProcess();
 	}
 
 	void Camera::CreateViewMatrix()
@@ -126,6 +127,7 @@ namespace yu
 		mOpaqueGameObjects.clear();
 		mCutoutGameObjects.clear();
 		mTransparentGameObjects.clear();
+		mPostProcessGameObjects.clear();
 
 		Scene* scene = SceneManager::GetActiveScene();
 		for (size_t i = 0; i < (UINT)eLayerType::End; i++)
@@ -178,6 +180,19 @@ namespace yu
 		}
 	}
 
+	void Camera::renderPostProcess()
+	{
+
+		for (GameObject* obj : mPostProcessGameObjects)
+		{
+			if (obj == nullptr)
+				continue;
+			renderer::CopyRenderTarget();
+			obj->Render();
+		}
+	}
+
+
 	void Camera::pushGameObjectToRenderingModes(GameObject* gameObj)
 	{
 		BaseRenderer* renderer
@@ -202,6 +217,10 @@ namespace yu
 		case yu::graphics::eRenderingMode::Transparent:
 			mTransparentGameObjects.push_back(gameObj);
 			break;
+		case yu::graphics::eRenderingMode::PostProcess:
+			mPostProcessGameObjects.push_back(gameObj);
+			break;
+
 		default:
 			break;
 		}

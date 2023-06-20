@@ -33,6 +33,8 @@
     <FxCompile Include="$(MSBuildThisFileDirectory)ParticleGS.hlsl" />
     <FxCompile Include="$(MSBuildThisFileDirectory)ParticlePS.hlsl" />
     <FxCompile Include="$(MSBuildThisFileDirectory)ParticleVS.hlsl" />
+    <FxCompile Include="$(MSBuildThisFileDirectory)PostProcessPS.hlsl" />
+    <FxCompile Include="$(MSBuildThisFileDirectory)PostProcessVS.hlsl" />
     <FxCompile Include="$(MSBuildThisFileDirectory)SpritePS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
     </FxCompile>
@@ -53,8 +55,12 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Blur.hlsli" />
+    <None Include="$(MSBuildThisFileDirectory)ConstantBuffer.hlsli" />
     <None Include="$(MSBuildThisFileDirectory)globals.hlsli" />
     <None Include="$(MSBuildThisFileDirectory)Light.hlsli" />
     <None Include="$(MSBuildThisFileDirectory)Particle.hlsli" />
+    <None Include="$(MSBuildThisFileDirectory)Resource.hlsli" />
+    <None Include="$(MSBuildThisFileDirectory)Sampler.hlsli" />
   </ItemGroup>
 </Project>
