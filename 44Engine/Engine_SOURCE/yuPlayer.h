@@ -14,8 +14,10 @@ namespace yu
 		virtual void FixedUpdate();
 		virtual void Render();
 
+		void sethp() { hp--; }
+
 	private:
-		int hp;
+		int hp = 3;
 		//GameObject* head;
 		//GameObject* body;
 	};

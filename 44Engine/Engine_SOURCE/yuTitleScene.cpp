@@ -85,6 +85,9 @@ namespace yu
 		{
 		GameObject* fadeObject = object::Instantiate<GameObject>(eLayerType::Fade);
 		MeshRenderer* fadeMr = fadeObject->AddComponent<MeshRenderer>();
+		Transform* spriteTr = fadeObject->GetComponent<Transform>();
+		spriteTr->SetPosition(Vector3(1.0f, 1.0f, 10.0f));
+		//spriteTr->SetScale(Vector3(17.0f, 10.0f, 1.f));
 		fadeMr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 		fadeMr->SetMaterial(Resources::Find<Material>(L"FadeMaterial"));
 		FadeScript* fadeScript = fadeObject->AddComponent<FadeScript>();
@@ -96,7 +99,7 @@ namespace yu
 		GameObject* TitleSprite = object::Instantiate<GameObject>(eLayerType::Background);
 		TitleSprite->SetName(L"TITLE");
 		Transform* spriteTr = TitleSprite->GetComponent<Transform>();
-		spriteTr->SetPosition(Vector3(1.0f, 1.0f, 100.0f));
+		spriteTr->SetPosition(Vector3(1.0f, 1.0f, 500.0f));
 		spriteTr->SetScale(Vector3(17.0f, 10.0f, 1.f));
 		SpriteRenderer* Titlesr = TitleSprite->AddComponent<SpriteRenderer>();
 		std::shared_ptr<Mesh> Titlemesh = Resources::Find<Mesh>(L"RectMesh");
@@ -107,7 +110,7 @@ namespace yu
 
 		Titlesr->SetMaterial(spriteMaterial);
 		Titlesr->SetMesh(Titlemesh);
-		object::DontDestroyOnLoad(TitleSprite);
+		//object::DontDestroyOnLoad(TitleSprite);
 		}
 
 		//// HPBAR
@@ -124,40 +127,7 @@ namespace yu
 		//hpsr->SetMesh(hpmesh);
 		//hpsr->SetMaterial(hpspriteMaterial);
 		
-		/*//PLAYER RECT
-		{
-			Player* obj = object::Instantiate<Player>(eLayerType::Player);
-			obj->SetName(L"PLAYER");
-			Transform* tr = obj->GetComponent<Transform>();
-			tr->SetPosition(Vector3(2.0f, 0.0f, 5.0f));
-			//이미지 회전하는 방법
-			//tr->SetRotation(Vector3(0.0f, 180.0f, 0.0f));
-			//tr->SetRotation(Vector3(0.0f, 0.0f, XM_PIDIV2 / 2.0f));
-			tr->SetScale(Vector3(5.0f, 5.0f, 1.0f));
-			Collider2D* collider = obj->AddComponent<Collider2D>();
-			collider->SetType(eColliderType::Rect);
-			collider->SetSize(Vector2(0.18f, 0.18f));
 
-			std::shared_ptr <Texture> tex1 = Resources::Find<Texture>(L"PlayerWalkSprite");
-			std::shared_ptr <Texture> tex2= Resources::Find<Texture>(L"PlayerPunchSprite");
-			std::shared_ptr <Texture> tex3 = Resources::Find<Texture>(L"PlayerIdleSprite");
-
-			Animator* animator = obj->AddComponent<Animator>();
-			animator->Create(L"Idle", tex3, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 1, 0.1f);
-			animator->Create(L"Punch", tex2, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			animator->Create(L"Walk", tex1, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 8, 0.1f);
-
-			animator->Play(L"Idle", true);
-
-
-			SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
-			std::shared_ptr<Material> mateiral = Resources::Find<Material>(L"PlayerMaterial");
-			mr->SetMaterial(mateiral);
-			std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
-			mr->SetMesh(mesh);
-		    obj->AddComponent<PlayerScript>();
-			object::DontDestroyOnLoad(obj);
-		}*/
 
 		//cursor
 		{

@@ -60,6 +60,12 @@ cbuffer ParticleSystem : register(b6)
     int padding;
 }
 
+cbuffer Debug : register(b8)
+{
+    float4 debugcolor;
+    float padding2;
+}
+
 //cbuffer Noise : register(b7)
 //{
 //    float4 NoiseSize;

@@ -51,6 +51,7 @@ namespace yu::renderer
 		float cumultime;
 	};
 
+
 	CBUFFER(AnimationCB, CBSLOT_ANIMATION)
 	{
 		Vector2 leftTop;
@@ -90,6 +91,13 @@ namespace yu::renderer
 		float noiseTime;
 	};
 
+	CBUFFER(DebugCB, CBSLOT_DEBUG)
+	{
+		Vector4 color;
+		float padding2;
+	};
+
+
 
 
 	extern Vertex vertexes[4];
@@ -113,6 +121,7 @@ namespace yu::renderer
 	void PushLightAttribute(LightAttribute lightAttribute);
 	void BindLights();
 	void BindNoiseTexture();
+	void BindDebug();
 	void CopyRenderTarget();
 
 }

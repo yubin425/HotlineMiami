@@ -25,6 +25,7 @@ namespace yu
 			GameObject::Update();
 			//head->update();
 			//body->update();
+			//if (hp <= 0) { exit(0); }
 	}
 
 	void Player::FixedUpdate()

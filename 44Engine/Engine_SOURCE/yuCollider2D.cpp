@@ -9,6 +9,8 @@ namespace yu
 	Collider2D::Collider2D()
 		: Component(eComponentType::Collider)
 		, mType(eColliderType::None)
+		, mCType(eCollisionType::Collision)
+		, mColor(Vector4(1.0f,1.0f,1.0f,1.0f))
 		, mTransform(nullptr)
 		, mSize(Vector2::One)
 		, mCenter(Vector2::Zero)
@@ -62,6 +64,7 @@ namespace yu
 		meshAttribute.type = mType;
 
 		renderer::debugMeshes.push_back(meshAttribute);
+
 	}
 
 	void Collider2D::Render()

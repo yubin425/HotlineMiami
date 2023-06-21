@@ -475,14 +475,15 @@ namespace yu::renderer
 
 
 		Resources::Load<Texture>(L"Titleimage", L"Title.png");
-		Resources::Load<Texture>(L"Endingimage", L"Ending.png");
+		Resources::Load<Texture>(L"Map", L"Map.png");
 		Resources::Load<Texture>(L"Cursor", L"cursor.png");
 
 		Resources::Load<Texture>(L"PlayerWalkSprite", L"sprPWalkUnarmed2_strip8.png");
 		Resources::Load<Texture>(L"PlayerPunchSprite", L"sprPAttackThrow_strip4.png");
 		Resources::Load<Texture>(L"PlayerIdleSprite", L"idle.png");
 
-		Resources::Load<Texture>(L"PlayerIdleSprite", L"idle.png");
+		Resources::Load<Texture>(L"EnemyIdleSprite", L"Enemywalk.png");
+		Resources::Load<Texture>(L"EnemyfallenSprite", L"sprEGroundBottle.png");
 
 		Resources::Load<Texture>(L"noise_01", L"noise\\noise_01.png");
 		Resources::Load<Texture>(L"noise_02", L"noise\\noise_02.png");
@@ -595,6 +596,26 @@ namespace yu::renderer
 		postProcessMaterial->SetShader(postProcessShader);
 		Resources::Insert<Material>(L"PostProcessMaterial", postProcessMaterial);
 #pragma endregion
+
+#pragma region Enemy
+		std::shared_ptr <Texture> EnemyTexture = Resources::Find<Texture>(L"EnemyIdleSprite");
+		std::shared_ptr<Shader> EnemyShader = Resources::Find<Shader>(L"SpriteShader");
+		std::shared_ptr<Material> EnemyMaterial = std::make_shared<Material>();
+		EnemyMaterial->SetRenderingMode(eRenderingMode::Transparent);
+		EnemyMaterial->SetShader(EnemyShader);
+		EnemyMaterial->SetTexture(eTextureSlot::T0, EnemyTexture);
+		Resources::Insert<Material>(L"EnemyMaterial", EnemyMaterial);
+#pragma endregion
+
+#pragma region MAP
+		std::shared_ptr <Texture> MapTexture = Resources::Find<Texture>(L"Map");
+		std::shared_ptr<Shader> MapShader = Resources::Find<Shader>(L"SpriteShader");
+		std::shared_ptr<Material> MapMaterial = std::make_shared<Material>();
+		MapMaterial->SetRenderingMode(eRenderingMode::Transparent);
+		MapMaterial->SetShader(MapShader);
+		MapMaterial->SetTexture(eTextureSlot::T0, MapTexture);
+		Resources::Insert<Material>(L"MapMaterial", MapMaterial);
+#pragma endregion
 	}
 
 	void Initialize()
@@ -623,6 +644,7 @@ namespace yu::renderer
 	{
 		BindNoiseTexture();
 		BindLights();
+		//BindDebug();
 		eSceneType type = SceneManager::GetActiveScene()->GetSceneType();
 		for (Camera* cam : cameras[(UINT)type])
 		{
@@ -655,6 +677,7 @@ namespace yu::renderer
 		cb->Bind(eShaderStage::VS);
 		cb->Bind(eShaderStage::PS);
 	}
+
 	float noiseTime = 10.0f;
 	void BindNoiseTexture()
 	{
@@ -681,6 +704,18 @@ namespace yu::renderer
 		cb->Bind(eShaderStage::PS);
 		cb->Bind(eShaderStage::CS);
 
+	}
+
+	void BindDebug()
+	{
+		// Constant buffer
+		yu::graphics::ConstantBuffer* cb = renderer::constantBuffers[(UINT)eCBType::Debug];
+		DebugCB data = {};
+		data.color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+
+		cb->SetData(&data);
+		cb->Bind(eShaderStage::VS);
+		cb->Bind(eShaderStage::PS);
 	}
 
 	void CopyRenderTarget()

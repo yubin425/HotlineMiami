@@ -20,6 +20,7 @@
 #define CBSLOT_NUMBEROFLIGHT 5
 #define CBSLOT_PARTICLESYSTEM 6
 #define CBSLOT_NOISE		7
+#define CBSLOT_DEBUG 8
 
 
 using namespace yu::math;
@@ -115,6 +116,7 @@ namespace yu::graphics
 		Light,
 		ParticleSystem,
 		Noise,
+		Debug,
 		End,
 	};
 

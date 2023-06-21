@@ -73,6 +73,14 @@ namespace yu::enums
 		End,
 	};
 
+	enum class eCollisionType
+	{
+		None,
+		Collision,
+		Detect,
+		End,
+	};
+
 	enum class eAnimationType
 	{
 		None,

@@ -128,7 +128,7 @@ namespace yu
 			tr->SetScale(Vector3(5.0f, 5.0f, 1.0f));
 			Collider2D* collider = obj->AddComponent<Collider2D>();
 			collider->SetType(eColliderType::Rect);
-			collider->SetSize(Vector2(0.18f, 0.18f));
+			collider->SetSize(Vector2(0.11f, 0.11f));
 
 			std::shared_ptr <Texture> tex1 = Resources::Find<Texture>(L"PlayerWalkSprite");
 			std::shared_ptr <Texture> tex2 = Resources::Find<Texture>(L"PlayerPunchSprite");
@@ -148,6 +148,59 @@ namespace yu
 			std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
 			mr->SetMesh(mesh);
 			obj->AddComponent<PlayerScript>();
+
+
+			Light* lightComp = obj->AddComponent<Light>();
+			lightComp->SetType(eLightType::Point);
+			lightComp->SetRadius(1.0f);
+			lightComp->SetDiffuse(Vector4(1.0f, 1.0f, 1.0f, 1.0f));
+			lightComp->SetOwner(obj);
+	
+		}
+
+		//Monster RECT
+		{
+			Monster* obj = object::Instantiate<Monster>(eLayerType::Monster);
+			obj->SetName(L"MONSTER");
+			tr = obj->GetComponent<Transform>();
+			tr->SetPosition(Vector3(2.0f, 3.0f, 5.0f));
+			tr->SetScale(Vector3(5.0f, 5.0f, 1.0f));
+			Collider2D* collider = obj->AddComponent<Collider2D>();
+			collider->SetType(eColliderType::Rect);
+			collider->SetSize(Vector2(0.11f, 0.11f));
+
+			std::shared_ptr <Texture> tex1 = Resources::Find<Texture>(L"EnemyIdleSprite");
+			std::shared_ptr <Texture> tex2 = Resources::Find<Texture>(L"EnemyfallenSprite");
+
+			Animator* animator = obj->AddComponent<Animator>();
+			animator->Create(L"Idle", tex1, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 8, 0.1f);
+			animator->Create(L"fallen", tex2, Vector2(0.0f, 0.0f), Vector2(64.0f, 32.0f), Vector2::Zero, 1, 0.1f);
+
+			animator->Play(L"Idle", true);
+
+			SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
+			std::shared_ptr<Material> mateiral = Resources::Find<Material>(L"EnemyMaterial");
+			mr->SetMaterial(mateiral);
+			std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
+			mr->SetMesh(mesh);
+			//obj->AddComponent<PlayerScript>();
+		}
+
+		// MAP image
+		{
+			GameObject* MapSprite = object::Instantiate<GameObject>(eLayerType::Background);
+			MapSprite->SetName(L"MAP");
+			Transform* spriteTr = MapSprite->GetComponent<Transform>();
+			spriteTr->SetPosition(Vector3(1.0f, 3.0f, 500.0f));
+			spriteTr->SetScale(Vector3(20.0f, 20.0f, 1.f));
+			SpriteRenderer* Mapsr = MapSprite->AddComponent<SpriteRenderer>();
+			std::shared_ptr<Mesh> Mapmesh = Resources::Find<Mesh>(L"RectMesh");
+
+			std::shared_ptr<Material> MapMaterial = Resources::Find<Material>(L"MapMaterial");
+
+			Mapsr->SetMaterial(MapMaterial);
+			Mapsr->SetMesh(Mapmesh);
+			//object::DontDestroyOnLoad(TitleSprite);
 		}
 
 		//post process object
@@ -199,6 +252,16 @@ namespace yu
 		{
 			std::vector<GameObject*> gameObjs
 				= GetGameObjects(eLayerType::Player);
+
+			for (GameObject* obj : gameObjs)
+			{
+				obj->Death();
+			}
+		}
+		//∏ÛΩ∫≈Õ DESTROY «ÿ¡‹
+		{
+			std::vector<GameObject*> gameObjs
+				= GetGameObjects(eLayerType::Monster);
 
 			for (GameObject* obj : gameObjs)
 			{

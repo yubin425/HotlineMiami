@@ -6,6 +6,8 @@
 #include "yuAnimator.h"
 #include "yuCamera.h"
 #include "yuRenderer.h"
+#include "yuMonster.h"
+#include "yuPlayer.h"
 
 namespace yu
 {
@@ -131,16 +133,45 @@ namespace yu
 
 	void PlayerScript::OnCollisionEnter(Collider2D* collider)
 	{
-		if (collider->GetName() == L"Monster") 
-		{
+		GameObject* owner = collider->GetOwner();
 
+		//if (collider->GetName() == L"Monster") 
+		if (dynamic_cast<Monster*>(owner)) 
+		{
+			//collider->SetSize(Vector2(0.30f, 0.30f));
+			dynamic_cast<Player*>(GetOwner())->sethp();
+			if (Status == ePlayerStatus::Attack)
+			{
+				owner->GetComponent<Animator>()->Play(L"fallen", true);
+			}
 		}
 
+		// Constant buffer
+		/*yu::graphics::ConstantBuffer* cb = renderer::constantBuffers[(UINT)eCBType::Debug];
+		renderer::DebugCB data;
+		data.color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+		data.padding2 = 0.0f;
+
+		cb->SetData(&data);
+		cb->Bind(eShaderStage::VS);
+		cb->Bind(eShaderStage::PS);*/
 
 	}
 
 	void PlayerScript::OnCollisionStay(Collider2D* collider)
 	{
+		GameObject* owner = collider->GetOwner();
+
+		//if (collider->GetName() == L"Monster") 
+		if (dynamic_cast<Monster*>(owner))
+		{
+			//collider->SetSize(Vector2(0.30f, 0.30f));
+			dynamic_cast<Player*>(GetOwner())->sethp();
+			if (Status == ePlayerStatus::Attack)
+			{
+				owner->GetComponent<Animator>()->Play(L"fallen", true);
+			}
+		}
 	}
 
 	void PlayerScript::OnCollisionExit(Collider2D* collider)

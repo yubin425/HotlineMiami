@@ -24,7 +24,8 @@ VSOut main(VSIn In)
     float4 ProjPosition = mul(viewPosition, projection);
 
     const float meshScale = 2.0f;
-    Out.Pos = float4(In.Pos.xy * meshScale, 0.0f, 1.0f);
+    Out.Pos = ProjPosition; 
+    Out.Pos =  float4(In.Pos.xy * meshScale, 0.0f, 0.0f);
     Out.UV = In.UV;
     Out.Color = float4(1.0f, 1.0f, 1.0f, 0.5f);
     //Out.Time = Cumultime;

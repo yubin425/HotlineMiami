@@ -28,6 +28,7 @@ namespace yu
 
 	void Light::FixedUpdate()
 	{
+
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector3 position = tr->GetPosition();
 		mAttribute.position = Vector4(position.x, position.y, position.z, 1.0f);

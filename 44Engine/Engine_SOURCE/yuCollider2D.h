@@ -24,6 +24,9 @@ namespace yu
 		virtual void OnTriggerExit(Collider2D* collider);
 
 		void SetType(eColliderType type) { mType = type; }
+		void SetCType(eCollisionType CType) { mCType = CType; }
+
+		void SetColor(Vector4 Color) { mColor = Color; }
 		void SetSize(Vector2 size) { mSize = size; }
 		void SetCenter(Vector2 center) { mCenter = center; }
 		void SetRadius(float radius) { mRadius = radius; }
@@ -41,11 +44,14 @@ namespace yu
 		static UINT ColliderNumber;
 		UINT mID;
 		eColliderType mType;
+		eCollisionType mCType;
 		Transform* mTransform;
 
 		Vector2 mSize;
 		Vector2 mCenter;
 		Vector3 mPosition;
+		Vector4 mColor;
+
 		float mRadius;
 		bool mbTrigger;
 	};

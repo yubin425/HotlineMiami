@@ -1,6 +1,8 @@
 #include "yuCollisionManager.h"
 #include "yuScene.h"
 #include "yuSceneManager.h"
+#include "yuConstantBuffer.h"
+#include "yuRenderer.h"
 
 namespace yu
 {
@@ -23,6 +25,8 @@ namespace yu
 				}
 			}
 		}
+
+
 	}
 	void CollisionManager::FixedUpdate()
 	{

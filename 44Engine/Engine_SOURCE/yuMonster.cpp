@@ -11,6 +11,7 @@ namespace yu
 	}
 	void Monster::Initalize()
 	{
+		GameObject::Initalize();
 	}
 	void Monster::Update()
 	{
@@ -18,8 +19,10 @@ namespace yu
 	}
 	void Monster::FixedUpdate()
 	{
+		GameObject::FixedUpdate();
 	}
 	void Monster::Render()
 	{
+		GameObject::Render();
 	}
 }
