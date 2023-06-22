@@ -105,6 +105,7 @@ namespace yu::enums
 	{
 		Idle,
 		Pan,
+		Mp5,
 		End,
 	};
 

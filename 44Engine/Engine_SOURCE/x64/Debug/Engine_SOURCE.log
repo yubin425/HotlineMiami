@@ -32,10 +32,10 @@ C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuRenderer.cpp(126,2
           ]
 C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuRenderer.cpp(133,72): warning C4267: '인수': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuRenderer.cpp(134,63): warning C4267: '인수': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuRenderer.cpp(695,53): warning C4267: '인수': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuRenderer.cpp(700,37): warning C4267: '=': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuRenderer.cpp(720,37): warning C4244: '=': 'size_t'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuRenderer.cpp(721,38): warning C4244: '=': 'size_t'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuRenderer.cpp(698,53): warning C4267: '인수': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuRenderer.cpp(703,37): warning C4267: '=': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuRenderer.cpp(723,37): warning C4244: '=': 'size_t'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuRenderer.cpp(724,38): warning C4244: '=': 'size_t'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuTime.cpp(49,46): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\yubin\Desktop\Hotline miami\44Engine\Engine_SOURCE\yuAnimator.cpp(84): warning C4715: 'yu::Animator::Create': 모든 제어 경로에서 값을 반환하지는 않습니다.
   Engine_SOURCE.vcxproj -> C:\Users\yubin\Desktop\Hotline miami\44Engine\x64\Debug\Lib\Engine_SOURCE.lib

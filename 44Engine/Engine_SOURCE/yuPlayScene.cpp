@@ -144,6 +144,9 @@ namespace yu
 			std::shared_ptr <Texture> tex4 = Resources::Find<Texture>(L"PlayerPanAttackSprite");
 			std::shared_ptr <Texture> tex5 = Resources::Find<Texture>(L"PlayerPanWalkSprite");
 
+			std::shared_ptr <Texture> tex6 = Resources::Find<Texture>(L"PlayerMP5AttackSprite");
+			std::shared_ptr <Texture> tex7 = Resources::Find<Texture>(L"PlayerMP5WalkSprite");
+
 			Animator* animator = obj->AddComponent<Animator>();
 			animator->Create(L"Idle", tex3, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 1, 0.1f);
 			animator->Create(L"Punch", tex2, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.08f);
@@ -152,6 +155,10 @@ namespace yu
 			animator->Create(L"PanAttack", tex4, Vector2(0.0f, 0.0f), Vector2(48.0f, 70.0f), Vector2::Zero, 8, 0.08f);
 			animator->Create(L"PanWalk", tex5, Vector2(0.0f, 0.0f), Vector2(32.0f, 34.0f), Vector2::Zero, 8, 0.1f);
 			animator->Create(L"PanIdle", tex5, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 1, 0.1f);
+
+			animator->Create(L"MP5Attack", tex6, Vector2(0.0f, 0.0f), Vector2(52.0f, 32.0f), Vector2::Zero, 3, 0.08f);
+			animator->Create(L"MP5Walk", tex7, Vector2(0.0f, 0.0f), Vector2(52.0f, 32.0f), Vector2::Zero, 8, 0.1f);
+			animator->Create(L"MP5Idle", tex7, Vector2(0.0f, 0.0f), Vector2(52.0f, 32.0f), Vector2::Zero, 1, 0.1f);
 
 			animator->Play(L"Idle", true);
 
@@ -203,6 +210,7 @@ namespace yu
 			tr = obj->GetComponent<Transform>();
 			tr->SetPosition(Vector3(2.0f, 3.0f, 5.0f));
 			tr->SetScale(Vector3(5.0f, 5.0f, 1.0f));
+
 			Collider2D* collider = obj->AddComponent<Collider2D>();
 			collider->SetType(eColliderType::Rect);
 			collider->SetSize(Vector2(0.11f, 0.11f));
@@ -258,7 +266,7 @@ namespace yu
 
 			Animator* animator = obj->AddComponent<Animator>();
 			animator->Create(L"pan", tex1, Vector2(1320.0f, 0.0f), Vector2(60.0f,60.0f), Vector2::Zero, 1, 0.1f);
-			animator->Play(L"pan", true);
+			animator->Play(L"pan", false);
 
 			SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
 			std::shared_ptr<Material> mateiral = Resources::Find<Material>(L"Weapon1Material");
@@ -268,6 +276,32 @@ namespace yu
 			obj->AddComponent<ItemScript>();
 		}
 
+		//Weapon2 RECT
+		{
+			Item* obj = object::Instantiate<Item>(eLayerType::Monster);
+			obj->SetName(L"WEAPON");
+			obj->setStatus(eWeaponStatus::Mp5);
+			tr = obj->GetComponent<Transform>();
+			tr->SetPosition(Vector3(3.0f, 1.0f, 5.0f));
+			tr->SetScale(Vector3(5.0f, 5.0f, 1.0f));
+
+			Collider2D* collider = obj->AddComponent<Collider2D>();
+			collider->SetType(eColliderType::Rect);
+			collider->SetSize(Vector2(0.11f, 0.07f));
+
+			std::shared_ptr <Texture> tex1 = Resources::Find<Texture>(L"weaponSprite");
+
+			Animator* animator = obj->AddComponent<Animator>();
+			animator->Create(L"mp5", tex1, Vector2(720.0f, 0.0f), Vector2(60.0f, 60.0f), Vector2::Zero, 1, 0.1f);
+			animator->Play(L"mp5", false);
+
+			SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
+			std::shared_ptr<Material> mateiral = Resources::Find<Material>(L"Weapon2Material");
+			mr->SetMaterial(mateiral);
+			std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
+			mr->SetMesh(mesh);
+			obj->AddComponent<ItemScript>();
+		}
 
 		//post process object
 		/* {

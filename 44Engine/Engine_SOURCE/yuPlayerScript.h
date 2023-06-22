@@ -20,6 +20,8 @@ namespace yu
 		virtual void OnCollisionStay(Collider2D* collider) override;
 		virtual void OnCollisionExit(Collider2D* collider) override;
 
+		void throwweapon();
+
 	private:
 		math::Vector2 mMousPosition;
 		math::Vector3 pos;

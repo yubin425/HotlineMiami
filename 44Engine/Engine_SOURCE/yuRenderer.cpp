@@ -483,7 +483,9 @@ namespace yu::renderer
 
 		Resources::Load<Texture>(L"PlayerPanAttackSprite", L"sprPAttackPan_strip8.png");
 		Resources::Load<Texture>(L"PlayerPanWalkSprite", L"sprPWalkPan_strip8.png");
-
+		Resources::Load<Texture>(L"PlayerMP5AttackSprite", L"sprPAttackMP5_strip3.png");
+		Resources::Load<Texture>(L"PlayerMP5WalkSprite", L"sprPWalkMP5_strip8.png");
+		
 		Resources::Load<Texture>(L"PlayerIdleSprite", L"idle.png");
 		Resources::Load<Texture>(L"PlayerLegSprite", L"legs.png");
 		
@@ -634,7 +636,7 @@ namespace yu::renderer
 		Resources::Insert<Material>(L"MapMaterial", MapMaterial);
 #pragma endregion
 
-#pragma region Weapon1
+#pragma region Weapon
 		std::shared_ptr <Texture> Weapon1Texture = Resources::Find<Texture>(L"weaponSprite");
 		std::shared_ptr<Shader> Weapon1Shader = Resources::Find<Shader>(L"SpriteShader");
 		std::shared_ptr<Material> Weapon1Material = std::make_shared<Material>();
@@ -642,6 +644,7 @@ namespace yu::renderer
 		Weapon1Material->SetShader(Weapon1Shader);
 		Weapon1Material->SetTexture(eTextureSlot::T0, Weapon1Texture);
 		Resources::Insert<Material>(L"Weapon1Material", Weapon1Material);
+		Resources::Insert<Material>(L"Weapon2Material", Weapon1Material);
 #pragma endregion
 	}
 

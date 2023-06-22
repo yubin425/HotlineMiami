@@ -30,6 +30,7 @@ namespace yu
 		//animator->GetEndEvent(L"Idle") = std::bind(&PlayerScript::End, this);
 		animator->GetCompleteEvent(L"Punch") = std::bind(&PlayerScript::End, this);
 		animator->GetCompleteEvent(L"PanAttack") = std::bind(&PlayerScript::End, this);
+		animator->GetCompleteEvent(L"MP5Attack") = std::bind(&PlayerScript::End, this);
 		//animator->GetCompleteEvent(L"Walk") = std::bind(&PlayerScript::End, this);
 		//animator->GetEvent(L"Idle", 1) = std::bind(&PlayerScript::End, this);
 		Status = ePlayerStatus::Idle;
@@ -120,6 +121,10 @@ namespace yu
 			{
 				animator->Play(L"PanAttack", false);
 			}
+			else if (weaponStatus == eWeaponStatus::Mp5)
+			{
+				animator->Play(L"MP5Attack", false);
+			}
 			else
 			{
 				animator->Play(L"Punch", false);
@@ -138,6 +143,10 @@ namespace yu
 			{
 				animator->Play(L"PanWalk", true);
 			}
+			else if (weaponStatus == eWeaponStatus::Mp5)
+			{
+				animator->Play(L"MP5Walk");
+			}
 			else
 			{
 				animator->Play(L"Walk", true);
@@ -150,6 +159,10 @@ namespace yu
 			{
 				animator->Play(L"PanIdle");
 			}
+			else if (weaponStatus == eWeaponStatus::Mp5)
+			{
+				animator->Play(L"MP5Idle");
+			}
 			else
 			{
 				animator->Play(L"Idle");
@@ -161,21 +174,7 @@ namespace yu
 		{
 			if (postweapon && mitem!=nullptr)
 			{
-				weaponStatus = eWeaponStatus::Idle;
-				mitem->setActive();
-				Transform* tr = mitem->GetComponent<Transform>();
-				tr->SetPosition(GetOwner()->GetComponent<Transform>()->GetPosition());
-
-				Vector3 ItemToPlayer = mMousPosition - tr->GetPosition();
-				ItemToPlayer = dirvec;
-				ItemToPlayer.Normalize();
-				Vector2 moveamount = Vector2(ItemToPlayer.x, ItemToPlayer.y);
-				moveamount*= 25.0f;
-
-				dynamic_cast<Item*>(mitem)->ApplyForce(moveamount, moveamount);
-
-				mitem = nullptr;
-				weapon = false;
+				throwweapon();
 			}
 		}
 
@@ -235,8 +234,13 @@ namespace yu
 
 		if (dynamic_cast<Item*>(owner))
 		{
-			if (Input::GetKeyDown(eKeyCode::RBTN))
+			
+			if (Input::GetKeyDown(eKeyCode::RBTN)&& mitem == nullptr)
 			{
+				if (mitem != nullptr && postweapon == true)
+				{
+					throwweapon();
+				}
 				Item* item = dynamic_cast<Item*>(owner);
 				weaponStatus = item->getStatus();
 				owner->Pause();
@@ -249,6 +253,25 @@ namespace yu
 	void PlayerScript::OnCollisionExit(Collider2D* collider)
 	{
 
+	}
+
+	void PlayerScript::throwweapon()
+	{
+		weaponStatus = eWeaponStatus::Idle;
+		mitem->setActive();
+		Transform* tr = mitem->GetComponent<Transform>();
+		tr->SetPosition(GetOwner()->GetComponent<Transform>()->GetPosition());
+
+		Vector3 ItemToPlayer = mMousPosition - tr->GetPosition();
+		ItemToPlayer = dirvec;
+		ItemToPlayer.Normalize();
+		Vector2 moveamount = Vector2(ItemToPlayer.x, ItemToPlayer.y);
+		moveamount *= 25.0f;
+
+		dynamic_cast<Item*>(mitem)->ApplyForce(moveamount, moveamount);
+
+		mitem = nullptr;
+		weapon = false;
 	}
 
 
@@ -268,6 +291,10 @@ namespace yu
 		if (weaponStatus == eWeaponStatus::Pan)
 		{
 			animator->Play(L"PanIdle");
+		}
+		else if (weaponStatus == eWeaponStatus::Mp5)
+		{
+			animator->Play(L"MP5Idle");
 		}
 		else
 		{
