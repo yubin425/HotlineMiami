@@ -30,7 +30,7 @@ namespace yu
 		Matrix mProjection;
 
 		enum::ePlayerStatus Status;
-
+		enum::ePlayerStatus postStatus;
 
 		void Start();
 		void Action();

@@ -36,7 +36,7 @@ namespace yu
 		Monster* owner = dynamic_cast<Monster*>(GetOwner());
 		mmove = owner->getmove();
 		velocity = owner->getvelocity();
-		pos = pos + mmove;
+		//pos = pos + mmove;
 		
 
 		math::Vector2 position = Vector2(pos.x, pos.y);

@@ -19,6 +19,8 @@ namespace yu::enums
 		
 		
 		Monster,
+		Item,
+		Leg,
 		Player,
 
 		Fade,
@@ -78,6 +80,7 @@ namespace yu::enums
 		None,
 		Collision,
 		Detect,
+		Sound,
 		End,
 	};
 
@@ -90,6 +93,24 @@ namespace yu::enums
 	};
 
 	enum class ePlayerStatus
+	{
+		Idle,
+		Walk,
+		Walking,
+		Attack,
+		End,
+	};
+
+	enum class ePlayerLegStatus
+	{
+		Idle,
+		Walk,
+		Walking,
+		End,
+	};
+
+
+	enum class eMonsterStatus
 	{
 		Idle,
 		Walk,

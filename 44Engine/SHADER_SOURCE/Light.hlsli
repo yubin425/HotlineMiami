@@ -30,7 +30,7 @@ void CalculateLight(in out LightColor pLightColor, float3 position, int idx)
     }
     else if (1 == lightAttributes[idx].type)
     {
-        float length = distance(lightAttributes[idx].position.xy, position.xy);
+        float length = distance(position.xy, lightAttributes[idx].position.xy);
 
         if (length < lightAttributes[idx].radius)
         {

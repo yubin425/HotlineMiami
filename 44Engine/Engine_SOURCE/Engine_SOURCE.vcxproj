@@ -179,6 +179,7 @@
     <ClInclude Include="yuGraphics.h" />
     <ClInclude Include="yuGridScript.h" />
     <ClInclude Include="yuInput.h" />
+    <ClInclude Include="yuItem.h" />
     <ClInclude Include="yuLayer.h" />
     <ClInclude Include="yuLight.h" />
     <ClInclude Include="yuMaterial.h" />
@@ -192,6 +193,7 @@
     <ClInclude Include="yuParticleShader.h" />
     <ClInclude Include="yuParticleSystem.h" />
     <ClInclude Include="yuPlayer.h" />
+    <ClInclude Include="yuPlayerLegScript.h" />
     <ClInclude Include="yuPlayerScript.h" />
     <ClInclude Include="yuPlayScene.h" />
     <ClInclude Include="yuPrefab.h" />
@@ -231,6 +233,7 @@
     <ClCompile Include="yuGraphicDevice_DX11.cpp" />
     <ClCompile Include="yuGridScript.cpp" />
     <ClCompile Include="yuInput.cpp" />
+    <ClCompile Include="yuItem.cpp" />
     <ClCompile Include="yuLayer.cpp" />
     <ClCompile Include="yuLight.cpp" />
     <ClCompile Include="yuMaterial.cpp" />
@@ -243,6 +246,7 @@
     <ClCompile Include="yuParticleShader.cpp" />
     <ClCompile Include="yuParticleSystem.cpp" />
     <ClCompile Include="yuPlayer.cpp" />
+    <ClCompile Include="yuPlayerLegScript.cpp" />
     <ClCompile Include="yuPlayerScript.cpp" />
     <ClCompile Include="yuPlayScene.cpp" />
     <ClCompile Include="yuPrefab.cpp" />

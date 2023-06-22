@@ -22,6 +22,7 @@
 #include "yuPaintShader.h"
 #include "yuParticleSystem.h"
 #include "yuMonsterScript.h"
+#include "yuPlayerLegScript.h"
 
 
 
@@ -82,6 +83,11 @@ namespace yu
 		if (Input::GetKeyDown(eKeyCode::N))
 		{
 			SceneManager::LoadScene(eSceneType::Ending);
+		}
+
+		if (Input::GetKeyDown(eKeyCode::X))
+		{
+			exit(0);
 		}
 
 		Scene::Update();
@@ -158,6 +164,30 @@ namespace yu
 			lightComp->SetOwner(obj);
 	
 		}
+		//PLAYER Leg RECT
+		{
+			Player* obj = object::Instantiate<Player>(eLayerType::Leg);
+			obj->SetName(L"PLAYERLEG");
+			tr = obj->GetComponent<Transform>();
+			tr->SetPosition(Vector3(2.0f, 0.0f, 5.0f));
+			tr->SetScale(Vector3(5.0f, 5.0f, 1.0f));
+
+			std::shared_ptr <Texture> tex1 = Resources::Find<Texture>(L"PlayerLegSprite");
+
+			Animator* animator = obj->AddComponent<Animator>();
+			animator->Create(L"Walk", tex1, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 16, 0.05f);
+			animator->Create(L"Idle", tex1, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 1, 0.05f);
+
+			animator->Play(L"Idle", true);
+
+			SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
+			std::shared_ptr<Material> mateiral = Resources::Find<Material>(L"PlayerLegMaterial");
+			mr->SetMaterial(mateiral);
+			std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
+			mr->SetMesh(mesh);
+			obj->AddComponent<PlayerLegScript>();
+
+		}
 
 		//Monster RECT
 		{
@@ -203,6 +233,32 @@ namespace yu
 			Mapsr->SetMesh(Mapmesh);
 			//object::DontDestroyOnLoad(TitleSprite);
 		}
+
+		/*//Weapon1 RECT
+		{
+			Monster* obj = object::Instantiate<Monster>(eLayerType::Item);
+			obj->SetName(L"WEAPON");
+			tr = obj->GetComponent<Transform>();
+			tr->SetPosition(Vector3(2.0f, 3.0f, 5.0f));
+			tr->SetScale(Vector3(5.0f, 5.0f, 1.0f));
+			Collider2D* collider = obj->AddComponent<Collider2D>();
+			collider->SetType(eColliderType::Rect);
+			collider->SetSize(Vector2(0.11f, 0.11f));
+
+			std::shared_ptr <Texture> tex1 = Resources::Find<Texture>(L"weaponSprite");
+
+			Animator* animator = obj->AddComponent<Animator>();
+			animator->Create(L"bat", tex1, Vector2(128.0f, 0.0f), Vector2(160.0f,32.0f), Vector2::Zero, 1, 0.1f);
+
+			animator->Play(L"bat", true);
+
+			SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
+			std::shared_ptr<Material> mateiral = Resources::Find<Material>(L"WeaponMaterial");
+			mr->SetMaterial(mateiral);
+			std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
+			mr->SetMesh(mesh);
+			//obj->AddComponent<MonsterScript>();
+		}*/
 
 		//post process object
 		/* {

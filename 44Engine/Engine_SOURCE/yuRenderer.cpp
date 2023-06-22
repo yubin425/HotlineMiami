@@ -481,9 +481,12 @@ namespace yu::renderer
 		Resources::Load<Texture>(L"PlayerWalkSprite", L"sprPWalkUnarmed2_strip8.png");
 		Resources::Load<Texture>(L"PlayerPunchSprite", L"sprPAttackThrow_strip4.png");
 		Resources::Load<Texture>(L"PlayerIdleSprite", L"idle.png");
+		Resources::Load<Texture>(L"PlayerLegSprite", L"legs.png");
 
 		Resources::Load<Texture>(L"EnemyIdleSprite", L"Enemywalk.png");
 		Resources::Load<Texture>(L"EnemyfallenSprite", L"sprEGroundBottle.png");
+
+		Resources::Load<Texture>(L"weaponSprite", L"weapon.png");
 
 		Resources::Load<Texture>(L"noise_01", L"noise\\noise_01.png");
 		Resources::Load<Texture>(L"noise_02", L"noise\\noise_02.png");
@@ -546,6 +549,16 @@ namespace yu::renderer
 		playerMaterial->SetShader(playerShader);
 		playerMaterial->SetTexture(eTextureSlot::T0, playerTexture);
 		Resources::Insert<Material>(L"PlayerMaterial", playerMaterial);
+
+#pragma endregion
+#pragma region Player Leg
+		std::shared_ptr <Texture> playerLegTexture = Resources::Find<Texture>(L"PlayerLegSprite");
+		std::shared_ptr<Shader> playerLegShader = Resources::Find<Shader>(L"SpriteShader");
+		std::shared_ptr<Material> playerLegMaterial = std::make_shared<Material>();
+		playerLegMaterial->SetRenderingMode(eRenderingMode::Transparent);
+		playerLegMaterial->SetShader(playerShader);
+		playerLegMaterial->SetTexture(eTextureSlot::T0, playerTexture);
+		Resources::Insert<Material>(L"PlayerLegMaterial", playerLegMaterial);
 
 #pragma endregion
 #pragma region UI
@@ -615,6 +628,16 @@ namespace yu::renderer
 		MapMaterial->SetShader(MapShader);
 		MapMaterial->SetTexture(eTextureSlot::T0, MapTexture);
 		Resources::Insert<Material>(L"MapMaterial", MapMaterial);
+#pragma endregion
+
+#pragma region Weapon1
+		std::shared_ptr <Texture> Weapon1Texture = Resources::Find<Texture>(L"weaponSprite");
+		std::shared_ptr<Shader> Weapon1Shader = Resources::Find<Shader>(L"SpriteShader");
+		std::shared_ptr<Material> Weapon1Material = std::make_shared<Material>();
+		Weapon1Material->SetRenderingMode(eRenderingMode::Transparent);
+		Weapon1Material->SetShader(Weapon1Shader);
+		Weapon1Material->SetTexture(eTextureSlot::T0, MapTexture);
+		Resources::Insert<Material>(L"Weapon1Material", MapMaterial);
 #pragma endregion
 	}
 

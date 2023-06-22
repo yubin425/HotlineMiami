@@ -53,10 +53,10 @@ namespace yu
 
 		{
 			//GameObject* directionalLight = object::Instantiate<GameObject>(eLayerType::Player);
-			//directionalLight->GetComponent<Transform>()->SetPosition(Vector3(3.0f, 0.0f, 0.0f));
+			//directionalLight->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, -100.0f));
 			//Light* lightComp = directionalLight->AddComponent<Light>();
 			//lightComp->SetType(eLightType::Point);
-			//lightComp->SetRadius(10.0f);
+			//lightComp->SetRadius(100.0f);
 			//lightComp->SetDiffuse(Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 		}
 

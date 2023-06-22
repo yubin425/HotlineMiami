@@ -1,3 +1,4 @@
 ipch/
 *.pdb
 *.jar
+x64/Release/

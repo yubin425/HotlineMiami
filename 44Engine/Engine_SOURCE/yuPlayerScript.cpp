@@ -64,46 +64,47 @@ namespace yu
 		//Vector3 diry = Vector3::UnitZ.Cross(dirx);
 
 		Animator* animator = GetOwner()->GetComponent<Animator>();
+		
+			if (Input::GetKeyState(eKeyCode::D) == eKeyState::PRESSED)
+			{
+				pos.x += 6.0f * Time::DeltaTime();
+				tr->SetPosition(pos);
 
-		if (Input::GetKeyState(eKeyCode::D) == eKeyState::PRESSED)
-		{
-			pos.x +=  6.0f * Time::DeltaTime();
-			tr->SetPosition(pos);
+				if (Status != ePlayerStatus::Walk && Status != ePlayerStatus::Walking)
+				{
+					Status = ePlayerStatus::Walk;
+				}
 
-			if (Status != ePlayerStatus::Walk && Status != ePlayerStatus::Walking)
-			{
-				Status = ePlayerStatus::Walk;
 			}
-	
-		}
-		if (Input::GetKeyState(eKeyCode::A) == eKeyState::PRESSED)
-		{
-			pos.x -=  6.0f * Time::DeltaTime();
-			tr->SetPosition(pos);
-			if (Status != ePlayerStatus::Walk && Status != ePlayerStatus::Walking)
+			if (Input::GetKeyState(eKeyCode::A) == eKeyState::PRESSED)
 			{
-				Status = ePlayerStatus::Walk;
+				pos.x -= 6.0f * Time::DeltaTime();
+				tr->SetPosition(pos);
+				if (Status != ePlayerStatus::Walk && Status != ePlayerStatus::Walking)
+				{
+					Status = ePlayerStatus::Walk;
+				}
 			}
-		}
 
-		if (Input::GetKeyState(eKeyCode::W) == eKeyState::PRESSED)
-		{
-			pos.y += 6.0f * Time::DeltaTime();
-			tr->SetPosition(pos);
-			if (Status != ePlayerStatus::Walk && Status != ePlayerStatus::Walking)
+			if (Input::GetKeyState(eKeyCode::W) == eKeyState::PRESSED)
 			{
-				Status = ePlayerStatus::Walk;
+				pos.y += 6.0f * Time::DeltaTime();
+				tr->SetPosition(pos);
+				if (Status != ePlayerStatus::Walk && Status != ePlayerStatus::Walking)
+				{
+					Status = ePlayerStatus::Walk;
+				}
 			}
-		}
-		if (Input::GetKeyState(eKeyCode::S) == eKeyState::PRESSED)
-		{
-			pos.y -=  6.0f * Time::DeltaTime();
-			tr->SetPosition(pos);
-			if (Status != ePlayerStatus::Walk && Status != ePlayerStatus::Walking)
+			if (Input::GetKeyState(eKeyCode::S) == eKeyState::PRESSED)
 			{
-				Status = ePlayerStatus::Walk;
+				pos.y -= 6.0f * Time::DeltaTime();
+				tr->SetPosition(pos);
+				if (Status != ePlayerStatus::Walk && Status != ePlayerStatus::Walking)
+				{
+					Status = ePlayerStatus::Walk;
+				}
 			}
-		}
+		
 
 
 		if (Input::GetKeyState(eKeyCode::LBTN)== eKeyState::DOWN)
@@ -111,6 +112,10 @@ namespace yu
 			Status = ePlayerStatus::Attack;
 			animator->Play(L"Punch", false);
 		}	
+		else if(postStatus == ePlayerStatus::Attack)
+		{
+			Status = ePlayerStatus::Attack;
+		}
 		else if (Status == ePlayerStatus::Walk)
 		{
 			Status = ePlayerStatus::Walking;
@@ -123,7 +128,7 @@ namespace yu
 		}
 
 
-
+		postStatus = Status;
 		Postpos = pos; 
 
 	}
@@ -165,16 +170,16 @@ namespace yu
 
 				//Vector3 monsterToPlayer = owner->GetComponent<Transform>()->GetPosition() - pos;
 				//mMousPosition.Normalize();
-				//Vector3 monsterToPlayer = mMousPosition- owner->GetComponent<Transform>()->GetPosition();
-				Vector3 monsterToPlayer = dirvec;
+				Vector3 monsterToPlayer = mMousPosition- owner->GetComponent<Transform>()->GetPosition();
+				//Vector3 monsterToPlayer = dirvec;
 				monsterToPlayer.Normalize();
 				//monsterToPlayer = Vector3(1.0f, 1.0f, 1.0f);
-				Vector3 monsterMoveAmount = monsterToPlayer * 0.01f;
+				Vector3 monsterMoveAmount = monsterToPlayer * 5.0f;
 
 				Vector2 direction = Vector2(monsterToPlayer.x * 0.01f, monsterToPlayer.y * 0.01f);
 				Vector2 moveamount = Vector2(monsterMoveAmount.x, monsterMoveAmount.y);
 
-				monster->ApplyForce(direction, moveamount);
+				monster->ApplyForce(moveamount, moveamount);
 			}
 		}
 	}
@@ -196,6 +201,7 @@ namespace yu
 	{
 		Animator* animator = GetOwner()->GetComponent<Animator>();
 		Status = ePlayerStatus::Idle;
+		postStatus = ePlayerStatus::Idle;
 		animator->Play(L"Idle");
 	}
 

@@ -36,7 +36,7 @@ namespace yu
 		void Action();
 		void End();
 
-		float dampingFactor = 0.5f;
+		float dampingFactor = 0.1f;
 
 
 	};

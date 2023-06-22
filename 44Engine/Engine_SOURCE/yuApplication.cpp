@@ -64,7 +64,7 @@ namespace yu
 
 	void Application::Destroy()
 	{
-
+		//SceneManager::Destroy();
 	}
 
 	// Running main engine loop
