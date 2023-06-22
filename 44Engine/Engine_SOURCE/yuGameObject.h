@@ -85,8 +85,10 @@ namespace yu
 			
 			return false;
 		}
+		void setActive() { mState = eState::Active; }
 		void Pause() { mState = eState::Paused; }
 		void Death() { mState = eState::Dead; }
+
 		eState GetState() { return mState; }
 		
 		bool IsDontDestroy() { return mbDontDestroy; }

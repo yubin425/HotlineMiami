@@ -248,6 +248,9 @@
     <ClCompile Include="yuPlayerLegScript.cpp">
       <Filter>Component\Script\Contents</Filter>
     </ClCompile>
+    <ClCompile Include="yuItemScript.cpp">
+      <Filter>Component\Script\Contents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonInclude.h">
@@ -412,6 +415,9 @@
       <Filter>Component\Script\Contents</Filter>
     </ClInclude>
     <ClInclude Include="yuPlayerLegScript.h">
+      <Filter>Component\Script\Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="yuItemScript.h">
       <Filter>Component\Script\Contents</Filter>
     </ClInclude>
   </ItemGroup>

@@ -23,8 +23,8 @@
 #include "yuParticleSystem.h"
 #include "yuMonsterScript.h"
 #include "yuPlayerLegScript.h"
-
-
+#include "yuItem.h"
+#include "yuItemScript.h"
 
 namespace yu
 {
@@ -141,10 +141,17 @@ namespace yu
 			std::shared_ptr <Texture> tex2 = Resources::Find<Texture>(L"PlayerPunchSprite");
 			std::shared_ptr <Texture> tex3 = Resources::Find<Texture>(L"PlayerIdleSprite");
 
+			std::shared_ptr <Texture> tex4 = Resources::Find<Texture>(L"PlayerPanAttackSprite");
+			std::shared_ptr <Texture> tex5 = Resources::Find<Texture>(L"PlayerPanWalkSprite");
+
 			Animator* animator = obj->AddComponent<Animator>();
 			animator->Create(L"Idle", tex3, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 1, 0.1f);
-			animator->Create(L"Punch", tex2, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			animator->Create(L"Punch", tex2, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.08f);
 			animator->Create(L"Walk", tex1, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 8, 0.1f);
+
+			animator->Create(L"PanAttack", tex4, Vector2(0.0f, 0.0f), Vector2(48.0f, 70.0f), Vector2::Zero, 8, 0.08f);
+			animator->Create(L"PanWalk", tex5, Vector2(0.0f, 0.0f), Vector2(32.0f, 34.0f), Vector2::Zero, 8, 0.1f);
+			animator->Create(L"PanIdle", tex5, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 1, 0.1f);
 
 			animator->Play(L"Idle", true);
 
@@ -176,7 +183,7 @@ namespace yu
 
 			Animator* animator = obj->AddComponent<Animator>();
 			animator->Create(L"Walk", tex1, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 16, 0.05f);
-			animator->Create(L"Idle", tex1, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 1, 0.05f);
+			animator->Create(L"Idle", tex1, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 1, 0.1f);
 
 			animator->Play(L"Idle", true);
 
@@ -234,31 +241,33 @@ namespace yu
 			//object::DontDestroyOnLoad(TitleSprite);
 		}
 
-		/*//Weapon1 RECT
+		//Weapon1 RECT
 		{
-			Monster* obj = object::Instantiate<Monster>(eLayerType::Item);
+			Item* obj = object::Instantiate<Item>(eLayerType::Monster);
 			obj->SetName(L"WEAPON");
+			obj->setStatus(eWeaponStatus::Pan);
 			tr = obj->GetComponent<Transform>();
-			tr->SetPosition(Vector3(2.0f, 3.0f, 5.0f));
+			tr->SetPosition(Vector3(2.0f, 1.0f, 5.0f));
 			tr->SetScale(Vector3(5.0f, 5.0f, 1.0f));
+
 			Collider2D* collider = obj->AddComponent<Collider2D>();
 			collider->SetType(eColliderType::Rect);
-			collider->SetSize(Vector2(0.11f, 0.11f));
-
+			collider->SetSize(Vector2(0.11f, 0.07f));
+			
 			std::shared_ptr <Texture> tex1 = Resources::Find<Texture>(L"weaponSprite");
 
 			Animator* animator = obj->AddComponent<Animator>();
-			animator->Create(L"bat", tex1, Vector2(128.0f, 0.0f), Vector2(160.0f,32.0f), Vector2::Zero, 1, 0.1f);
-
-			animator->Play(L"bat", true);
+			animator->Create(L"pan", tex1, Vector2(1320.0f, 0.0f), Vector2(60.0f,60.0f), Vector2::Zero, 1, 0.1f);
+			animator->Play(L"pan", true);
 
 			SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
-			std::shared_ptr<Material> mateiral = Resources::Find<Material>(L"WeaponMaterial");
+			std::shared_ptr<Material> mateiral = Resources::Find<Material>(L"Weapon1Material");
 			mr->SetMaterial(mateiral);
 			std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
 			mr->SetMesh(mesh);
-			//obj->AddComponent<MonsterScript>();
-		}*/
+			obj->AddComponent<ItemScript>();
+		}
+
 
 		//post process object
 		/* {

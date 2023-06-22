@@ -10,6 +10,7 @@
 #include "yuPlayer.h"
 #include "yuMonsterScript.h"
 
+
 namespace yu
 {
 	PlayerScript::PlayerScript()
@@ -28,9 +29,14 @@ namespace yu
 		//animator->GetCompleteEvent(L"Idle") = std::bind(&PlayerScript::Action, this);
 		//animator->GetEndEvent(L"Idle") = std::bind(&PlayerScript::End, this);
 		animator->GetCompleteEvent(L"Punch") = std::bind(&PlayerScript::End, this);
+		animator->GetCompleteEvent(L"PanAttack") = std::bind(&PlayerScript::End, this);
 		//animator->GetCompleteEvent(L"Walk") = std::bind(&PlayerScript::End, this);
 		//animator->GetEvent(L"Idle", 1) = std::bind(&PlayerScript::End, this);
 		Status = ePlayerStatus::Idle;
+
+		weaponStatus = eWeaponStatus::Idle;
+		weapon = false;
+		postweapon = false;
 	}
 
 
@@ -110,7 +116,15 @@ namespace yu
 		if (Input::GetKeyState(eKeyCode::LBTN)== eKeyState::DOWN)
 		{
 			Status = ePlayerStatus::Attack;
-			animator->Play(L"Punch", false);
+			if (weaponStatus == eWeaponStatus::Pan)
+			{
+				animator->Play(L"PanAttack", false);
+			}
+			else
+			{
+				animator->Play(L"Punch", false);
+			}
+
 		}	
 		else if(postStatus == ePlayerStatus::Attack)
 		{
@@ -119,17 +133,55 @@ namespace yu
 		else if (Status == ePlayerStatus::Walk)
 		{
 			Status = ePlayerStatus::Walking;
-			animator->Play(L"Walk", true);
+
+			if (weaponStatus == eWeaponStatus::Pan)
+			{
+				animator->Play(L"PanWalk", true);
+			}
+			else
+			{
+				animator->Play(L"Walk", true);
+			}
 		}
 		else if (Status != ePlayerStatus::Attack&&Postpos == pos)
 		{
 			Status = ePlayerStatus::Idle;
-			animator->Play(L"Idle", true);
+			if (weaponStatus == eWeaponStatus::Pan)
+			{
+				animator->Play(L"PanIdle");
+			}
+			else
+			{
+				animator->Play(L"Idle");
+			}
+
 		}
 
+		if (Input::GetKeyDown(eKeyCode::RBTN)&&weapon)
+		{
+			if (postweapon && mitem!=nullptr)
+			{
+				weaponStatus = eWeaponStatus::Idle;
+				mitem->setActive();
+				Transform* tr = mitem->GetComponent<Transform>();
+				tr->SetPosition(GetOwner()->GetComponent<Transform>()->GetPosition());
+
+				Vector3 ItemToPlayer = mMousPosition - tr->GetPosition();
+				ItemToPlayer = dirvec;
+				ItemToPlayer.Normalize();
+				Vector2 moveamount = Vector2(ItemToPlayer.x, ItemToPlayer.y);
+				moveamount*= 25.0f;
+
+				dynamic_cast<Item*>(mitem)->ApplyForce(moveamount, moveamount);
+
+				mitem = nullptr;
+				weapon = false;
+			}
+		}
 
 		postStatus = Status;
 		Postpos = pos; 
+		postweapon = weapon;
 
 	}
 
@@ -158,10 +210,8 @@ namespace yu
 	{
 		GameObject* owner = collider->GetOwner();
 
-		//if (collider->GetName() == L"Monster") 
 		if (dynamic_cast<Monster*>(owner))
 		{
-			//collider->SetSize(Vector2(0.30f, 0.30f));
 			Monster* monster = dynamic_cast<Monster*>(owner);
 			dynamic_cast<Player*>(GetOwner())->sethp();
 			if (Status == ePlayerStatus::Attack)
@@ -176,16 +226,29 @@ namespace yu
 				//monsterToPlayer = Vector3(1.0f, 1.0f, 1.0f);
 				Vector3 monsterMoveAmount = monsterToPlayer * 5.0f;
 
-				Vector2 direction = Vector2(monsterToPlayer.x * 0.01f, monsterToPlayer.y * 0.01f);
+				//Vector2 direction = Vector2(monsterToPlayer.x * 0.01f, monsterToPlayer.y * 0.01f);
 				Vector2 moveamount = Vector2(monsterMoveAmount.x, monsterMoveAmount.y);
 
 				monster->ApplyForce(moveamount, moveamount);
+			}
+		}
+
+		if (dynamic_cast<Item*>(owner))
+		{
+			if (Input::GetKeyDown(eKeyCode::RBTN))
+			{
+				Item* item = dynamic_cast<Item*>(owner);
+				weaponStatus = item->getStatus();
+				owner->Pause();
+				weapon = true;
+				mitem = owner;
 			}
 		}
 	}
 
 	void PlayerScript::OnCollisionExit(Collider2D* collider)
 	{
+
 	}
 
 
@@ -202,7 +265,15 @@ namespace yu
 		Animator* animator = GetOwner()->GetComponent<Animator>();
 		Status = ePlayerStatus::Idle;
 		postStatus = ePlayerStatus::Idle;
-		animator->Play(L"Idle");
+		if (weaponStatus == eWeaponStatus::Pan)
+		{
+			animator->Play(L"PanIdle");
+		}
+		else
+		{
+			animator->Play(L"Idle");
+		}
+
 	}
 
 

@@ -27,19 +27,19 @@ namespace yu
 
 		if (Input::GetKeyState(eKeyCode::RIGHT) == eKeyState::PRESSED)
 		{
-			pos += 100.0f * tr->Right() * Time::DeltaTime();
+			pos += 10.0f * tr->Right() * Time::DeltaTime();
 		}
 		else if (Input::GetKeyState(eKeyCode::LEFT) == eKeyState::PRESSED)
 		{
-			pos += 100.0f * -tr->Right() * Time::DeltaTime();
+			pos += 10.0f * -tr->Right() * Time::DeltaTime();
 		}
 		else if (Input::GetKeyState(eKeyCode::UP) == eKeyState::PRESSED)
 		{
-			pos += 100.0f * tr->Up() * Time::DeltaTime();
+			pos += 10.0f * tr->Up() * Time::DeltaTime();
 		}
 		else if (Input::GetKeyState(eKeyCode::DOWN) == eKeyState::PRESSED)
 		{
-			pos += 100.0f * -tr->Up() * Time::DeltaTime();
+			pos += 10.0f * -tr->Up() * Time::DeltaTime();
 		}
 
 		tr->SetPosition(pos);

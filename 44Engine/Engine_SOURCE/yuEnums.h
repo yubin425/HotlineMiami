@@ -101,6 +101,13 @@ namespace yu::enums
 		End,
 	};
 
+	enum class eWeaponStatus
+	{
+		Idle,
+		Pan,
+		End,
+	};
+
 	enum class ePlayerLegStatus
 	{
 		Idle,

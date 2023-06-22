@@ -1,6 +1,7 @@
 #pragma once
 #include "yuScript.h"
 #include "yuMath.h"
+#include "yuItem.h"
 
 
 namespace yu
@@ -31,6 +32,11 @@ namespace yu
 
 		enum::ePlayerStatus Status;
 		enum::ePlayerStatus postStatus;
+		enum::eWeaponStatus weaponStatus;
+		bool weapon;
+		bool postweapon;
+
+		GameObject* mitem;
 
 		void Start();
 		void Action();

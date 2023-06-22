@@ -180,6 +180,7 @@
     <ClInclude Include="yuGridScript.h" />
     <ClInclude Include="yuInput.h" />
     <ClInclude Include="yuItem.h" />
+    <ClInclude Include="yuItemScript.h" />
     <ClInclude Include="yuLayer.h" />
     <ClInclude Include="yuLight.h" />
     <ClInclude Include="yuMaterial.h" />
@@ -234,6 +235,7 @@
     <ClCompile Include="yuGridScript.cpp" />
     <ClCompile Include="yuInput.cpp" />
     <ClCompile Include="yuItem.cpp" />
+    <ClCompile Include="yuItemScript.cpp" />
     <ClCompile Include="yuLayer.cpp" />
     <ClCompile Include="yuLight.cpp" />
     <ClCompile Include="yuMaterial.cpp" />
