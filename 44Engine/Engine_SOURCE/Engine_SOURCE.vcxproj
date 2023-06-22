@@ -186,6 +186,7 @@
     <ClInclude Include="yuMesh.h" />
     <ClInclude Include="yuMeshRenderer.h" />
     <ClInclude Include="yuMonster.h" />
+    <ClInclude Include="yuMonsterScript.h" />
     <ClInclude Include="yuObject.h" />
     <ClInclude Include="yuPaintShader.h" />
     <ClInclude Include="yuParticleShader.h" />
@@ -237,6 +238,7 @@
     <ClCompile Include="yuMesh.cpp" />
     <ClCompile Include="yuMeshRenderer.cpp" />
     <ClCompile Include="yuMonster.cpp" />
+    <ClCompile Include="yuMonsterScript.cpp" />
     <ClCompile Include="yuPaintShader.cpp" />
     <ClCompile Include="yuParticleShader.cpp" />
     <ClCompile Include="yuParticleSystem.cpp" />

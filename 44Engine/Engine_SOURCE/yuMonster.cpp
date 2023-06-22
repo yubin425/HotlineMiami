@@ -25,4 +25,10 @@ namespace yu
 	{
 		GameObject::Render();
 	}
+	void Monster::ApplyForce(math::Vector2& force, math::Vector2& move)
+	{
+		mmove = move;
+		velocity = velocity + force;
+	}
+
 }

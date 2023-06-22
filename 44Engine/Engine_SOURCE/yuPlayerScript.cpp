@@ -8,6 +8,7 @@
 #include "yuRenderer.h"
 #include "yuMonster.h"
 #include "yuPlayer.h"
+#include "yuMonsterScript.h"
 
 namespace yu
 {
@@ -50,7 +51,7 @@ namespace yu
 		//mMousPosition.x = mMousPosition.x +1.1;
 		//mMousPosition.y = mMousPosition.y + 0.8;
 
-		Vector3 dirvec =  mMousPosition-pos;
+		dirvec =  mMousPosition-pos;
 		dirvec.z = 0.f;
 
 	
@@ -135,16 +136,6 @@ namespace yu
 	{
 		GameObject* owner = collider->GetOwner();
 
-		//if (collider->GetName() == L"Monster") 
-		if (dynamic_cast<Monster*>(owner)) 
-		{
-			//collider->SetSize(Vector2(0.30f, 0.30f));
-			dynamic_cast<Player*>(GetOwner())->sethp();
-			if (Status == ePlayerStatus::Attack)
-			{
-				owner->GetComponent<Animator>()->Play(L"fallen", true);
-			}
-		}
 
 		// Constant buffer
 		/*yu::graphics::ConstantBuffer* cb = renderer::constantBuffers[(UINT)eCBType::Debug];
@@ -166,10 +157,24 @@ namespace yu
 		if (dynamic_cast<Monster*>(owner))
 		{
 			//collider->SetSize(Vector2(0.30f, 0.30f));
+			Monster* monster = dynamic_cast<Monster*>(owner);
 			dynamic_cast<Player*>(GetOwner())->sethp();
 			if (Status == ePlayerStatus::Attack)
 			{
 				owner->GetComponent<Animator>()->Play(L"fallen", true);
+
+				//Vector3 monsterToPlayer = owner->GetComponent<Transform>()->GetPosition() - pos;
+				//mMousPosition.Normalize();
+				//Vector3 monsterToPlayer = mMousPosition- owner->GetComponent<Transform>()->GetPosition();
+				Vector3 monsterToPlayer = dirvec;
+				monsterToPlayer.Normalize();
+				//monsterToPlayer = Vector3(1.0f, 1.0f, 1.0f);
+				Vector3 monsterMoveAmount = monsterToPlayer * 0.01f;
+
+				Vector2 direction = Vector2(monsterToPlayer.x * 0.01f, monsterToPlayer.y * 0.01f);
+				Vector2 moveamount = Vector2(monsterMoveAmount.x, monsterMoveAmount.y);
+
+				monster->ApplyForce(direction, moveamount);
 			}
 		}
 	}

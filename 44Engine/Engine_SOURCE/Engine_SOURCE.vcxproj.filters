@@ -239,6 +239,9 @@
     <ClCompile Include="yuParticleShader.cpp">
       <Filter>Resource\Shader</Filter>
     </ClCompile>
+    <ClCompile Include="yuMonsterScript.cpp">
+      <Filter>Component\Script\Contents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonInclude.h">
@@ -395,6 +398,9 @@
     <ClInclude Include="yuParticleSystem.h" />
     <ClInclude Include="yuParticleShader.h">
       <Filter>Resource\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="yuMonsterScript.h">
+      <Filter>Component\Script\Contents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

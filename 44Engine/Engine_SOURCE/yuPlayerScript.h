@@ -24,6 +24,7 @@ namespace yu
 		math::Vector3 pos;
 		math::Vector3 Postpos;
 		math::Vector3 forward;
+		math::Vector3 dirvec;
 
 		Matrix mView;
 		Matrix mProjection;

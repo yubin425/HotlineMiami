@@ -21,6 +21,7 @@
 #include "yuLight.h"
 #include "yuPaintShader.h"
 #include "yuParticleSystem.h"
+#include "yuMonsterScript.h"
 
 
 
@@ -183,7 +184,7 @@ namespace yu
 			mr->SetMaterial(mateiral);
 			std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
 			mr->SetMesh(mesh);
-			//obj->AddComponent<PlayerScript>();
+			obj->AddComponent<MonsterScript>();
 		}
 
 		// MAP image
