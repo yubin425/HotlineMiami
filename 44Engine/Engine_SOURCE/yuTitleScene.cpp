@@ -135,10 +135,15 @@ namespace yu
 			obj->SetName(L"CURSOR");
 			Transform* tr = obj->GetComponent<Transform>();
 			tr->SetPosition(Vector3(2.0f, 0.0f, 5.0f));
-			tr->SetScale(Vector3(0.5f, 0.5f, 1.0f));
+			tr->SetScale(Vector3(5.0f, 5.0f, 1.0f));
 			Collider2D* collider = obj->AddComponent<Collider2D>();
 			collider->SetType(eColliderType::Rect);
-			//collider->SetSize(Vector2(0.18f, 0.18f));
+			collider->SetSize(Vector2(0.07f, 0.07f));
+
+			std::shared_ptr <Texture> tex1 = Resources::Find<Texture>(L"Cursor");
+			Animator* animator = obj->AddComponent<Animator>();
+			animator->Create(L"Idle", tex1, Vector2(0.0f, 0.0f), Vector2(13.0f, 13.0f), Vector2::Zero, 13, 0.1f);
+			animator->Play(L"Idle", true);
 
 			SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
 			std::shared_ptr<Material> mateiral = Resources::Find<Material>(L"CursorMaterial");
@@ -173,6 +178,8 @@ namespace yu
 
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Player, true);
+		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Item, true);
+		CollisionManager::CollisionLayerCheck(eLayerType::Item, eLayerType::Item, true);
 
 		Scene::Initalize();
 	}

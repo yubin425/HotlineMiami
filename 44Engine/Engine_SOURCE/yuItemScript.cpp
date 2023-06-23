@@ -54,7 +54,19 @@ namespace yu
 
 	void ItemScript::OnCollisionEnter(Collider2D* collider)
 	{
+		GameObject* owner = collider->GetOwner();
+		if (dynamic_cast<Item*>(owner))
+		{
+			Item* mitem = dynamic_cast<Item*>(owner);
+			Transform* tr = mitem->GetComponent<Transform>();
 
+			Vector3 ItemToItem = tr->GetPosition() - GetOwner()->GetComponent<Transform>()->GetPosition();
+			ItemToItem.Normalize();
+			Vector2 moveamount = Vector2(ItemToItem.x, ItemToItem.y);
+			moveamount *= 1.0f;
+
+			dynamic_cast<Item*>(mitem)->ApplyForce(moveamount, moveamount);
+		}
 
 	}
 

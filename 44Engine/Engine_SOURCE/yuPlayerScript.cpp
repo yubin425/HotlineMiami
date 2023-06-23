@@ -172,7 +172,7 @@ namespace yu
 
 		if (Input::GetKeyDown(eKeyCode::RBTN)&&weapon)
 		{
-			if (postweapon && mitem!=nullptr)
+			if (postweapon && mitem!=nullptr && Status != ePlayerStatus::Attack)
 			{
 				throwweapon();
 			}
@@ -235,17 +235,20 @@ namespace yu
 		if (dynamic_cast<Item*>(owner))
 		{
 			
-			if (Input::GetKeyDown(eKeyCode::RBTN)&& mitem == nullptr)
+			if (Input::GetKeyDown(eKeyCode::RBTN) && mitem == nullptr && Status != ePlayerStatus::Attack)
 			{
-				if (mitem != nullptr && postweapon == true)
-				{
-					throwweapon();
-				}
 				Item* item = dynamic_cast<Item*>(owner);
-				weaponStatus = item->getStatus();
-				owner->Pause();
-				weapon = true;
-				mitem = owner;
+				if (item->getStatus() != eWeaponStatus::Bullet) 
+				{
+					if (mitem != nullptr && postweapon == true)
+					{
+						throwweapon();
+					}
+					weaponStatus = item->getStatus();
+					owner->Pause();
+					weapon = true;
+					mitem = owner;
+				}
 			}
 		}
 	}
@@ -257,6 +260,7 @@ namespace yu
 
 	void PlayerScript::throwweapon()
 	{
+		
 		weaponStatus = eWeaponStatus::Idle;
 		mitem->setActive();
 		Transform* tr = mitem->GetComponent<Transform>();

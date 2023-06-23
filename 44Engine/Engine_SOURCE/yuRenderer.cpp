@@ -476,7 +476,7 @@ namespace yu::renderer
 
 		Resources::Load<Texture>(L"Titleimage", L"Title.png");
 		Resources::Load<Texture>(L"Map", L"Map.png");
-		Resources::Load<Texture>(L"Cursor", L"cursor.png");
+		Resources::Load<Texture>(L"Cursor", L"sprCursor_strip13.png");
 
 		Resources::Load<Texture>(L"PlayerWalkSprite", L"sprPWalkUnarmed2_strip8.png");
 		Resources::Load<Texture>(L"PlayerPunchSprite", L"sprPAttackThrow_strip4.png");
@@ -493,6 +493,7 @@ namespace yu::renderer
 		Resources::Load<Texture>(L"EnemyfallenSprite", L"sprEGroundBottle.png");
 
 		Resources::Load<Texture>(L"weaponSprite", L"weapon.png");
+		Resources::Load<Texture>(L"BulletSprite", L"sprBullet_strip4.png");
 
 		Resources::Load<Texture>(L"noise_01", L"noise\\noise_01.png");
 		Resources::Load<Texture>(L"noise_02", L"noise\\noise_02.png");
@@ -645,6 +646,7 @@ namespace yu::renderer
 		Weapon1Material->SetTexture(eTextureSlot::T0, Weapon1Texture);
 		Resources::Insert<Material>(L"Weapon1Material", Weapon1Material);
 		Resources::Insert<Material>(L"Weapon2Material", Weapon1Material);
+		Resources::Insert<Material>(L"BulletMaterial", Weapon1Material);
 #pragma endregion
 	}
 

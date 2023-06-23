@@ -205,7 +205,7 @@ namespace yu
 
 		//Monster RECT
 		{
-			Monster* obj = object::Instantiate<Monster>(eLayerType::Monster);
+			Monster* obj = object::Instantiate<Monster>(eLayerType::Item);
 			obj->SetName(L"MONSTER");
 			tr = obj->GetComponent<Transform>();
 			tr->SetPosition(Vector3(2.0f, 3.0f, 5.0f));
@@ -251,7 +251,7 @@ namespace yu
 
 		//Weapon1 RECT
 		{
-			Item* obj = object::Instantiate<Item>(eLayerType::Monster);
+			Item* obj = object::Instantiate<Item>(eLayerType::Item);
 			obj->SetName(L"WEAPON");
 			obj->setStatus(eWeaponStatus::Pan);
 			tr = obj->GetComponent<Transform>();
@@ -278,7 +278,7 @@ namespace yu
 
 		//Weapon2 RECT
 		{
-			Item* obj = object::Instantiate<Item>(eLayerType::Monster);
+			Item* obj = object::Instantiate<Item>(eLayerType::Item);
 			obj->SetName(L"WEAPON");
 			obj->setStatus(eWeaponStatus::Mp5);
 			tr = obj->GetComponent<Transform>();
@@ -294,6 +294,33 @@ namespace yu
 			Animator* animator = obj->AddComponent<Animator>();
 			animator->Create(L"mp5", tex1, Vector2(720.0f, 0.0f), Vector2(60.0f, 60.0f), Vector2::Zero, 1, 0.1f);
 			animator->Play(L"mp5", false);
+
+			SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
+			std::shared_ptr<Material> mateiral = Resources::Find<Material>(L"Weapon2Material");
+			mr->SetMaterial(mateiral);
+			std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
+			mr->SetMesh(mesh);
+			obj->AddComponent<ItemScript>();
+		}
+
+		//Bullet RECT
+		{
+			Item* obj = object::Instantiate<Item>(eLayerType::Item);
+			obj->SetName(L"WEAPON");
+			obj->setStatus(eWeaponStatus::Bullet);
+			tr = obj->GetComponent<Transform>();
+			tr->SetPosition(Vector3(1.0f, 1.0f, 5.0f));
+			tr->SetScale(Vector3(5.0f, 5.0f, 1.0f));
+
+			Collider2D* collider = obj->AddComponent<Collider2D>();
+			collider->SetType(eColliderType::Rect);
+			collider->SetSize(Vector2(0.07f, 0.05f));
+
+			std::shared_ptr <Texture> tex1 = Resources::Find<Texture>(L"BulletSprite");
+
+			Animator* animator = obj->AddComponent<Animator>();
+			animator->Create(L"bullet", tex1, Vector2(0.0f, 0.0f), Vector2(8.0f, 3.0f), Vector2::Zero, 8, 0.05f);
+			animator->Play(L"bullet", true);
 
 			SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
 			std::shared_ptr<Material> mateiral = Resources::Find<Material>(L"Weapon2Material");

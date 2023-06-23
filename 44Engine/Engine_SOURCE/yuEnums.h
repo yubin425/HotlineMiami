@@ -104,6 +104,7 @@ namespace yu::enums
 	enum class eWeaponStatus
 	{
 		Idle,
+		Bullet,
 		Pan,
 		Mp5,
 		End,

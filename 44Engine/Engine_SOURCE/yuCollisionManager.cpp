@@ -56,6 +56,7 @@ namespace yu
 	{
 		const std::vector<GameObject*>& lefts = scene->GetGameObjects(left);
 		const std::vector<GameObject*>& rights = scene->GetGameObjects(right);
+		eLayerType l = left;
 
 		for (GameObject* left : lefts)
 		{
@@ -72,13 +73,15 @@ namespace yu
 				if (right->GetComponent<Collider2D>() == nullptr)
 					continue;
 				if (left == right)
-					continue;
+					if(l != eLayerType::Item)
+						continue;
 
 				ColliderCollision(left->GetComponent<Collider2D>(), right->GetComponent<Collider2D>());
 			}
 
 			if ((UINT)left == (UINT)right)
-				break;
+				if (l != eLayerType::Item)
+					break;
 		}
 
 	}
